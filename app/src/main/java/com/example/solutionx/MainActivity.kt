@@ -7,20 +7,25 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.solutionx.ui.theme.SolutionXTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,11 +53,37 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     val expanded = remember {
         mutableStateOf(false)
     }
-    ElevatedButton(onClick = {expanded.value = !expanded.value}) {
-        Text(
-            text = name.random(),
-            modifier = modifier
-        )
+    Surface {
+        MaterialTheme.colorScheme.background.red
+    }
+    Column(modifier = Modifier.fillMaxWidth()){
+        ElevatedButton(onClick = {expanded.value = !expanded.value}) {
+            Text(
+                text = name.random(),
+                modifier = modifier
+            )
+        }
+        OutlinedButton(onClick = { }) {
+            Text(text = "Button X")
+            
+        }
+        FilledTonalButton(onClick = { /*TODO*/ }) {
+            Text(text = "Toned Up")
+        }
+        FloatingActionButton(onClick = { /*TODO*/ }) {
+            Text(text = "Floating")
+            
+        }
+        FilledIconButton(onClick = { /*TODO*/ }) {
+            Text(text = "Icon")
+        }
+    }
+    Row(modifier = Modifier) {
+        Box {
+            IconButton(onClick = { /*TODO*/ }) {
+                 Modifier.background(color = Color.Magenta)
+            }
+        }
     }
 }
 

@@ -8,5 +8,4 @@ data class User(
     val gender: String,
     val height: Float,
     val goal: String,
-    val healthData: HealthData
 )
