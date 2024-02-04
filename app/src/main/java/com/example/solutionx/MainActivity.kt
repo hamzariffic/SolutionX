@@ -120,6 +120,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     SolutionXTheme {
-        Greeting("Hamza")
+        Greeting("Hamza Y")
     }
 }
