@@ -50,19 +50,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val name : List<String> = listOf("Hamza", "Ali", "Ahmed")
-    val expanded = remember {
+    var expanded = remember {
         mutableStateOf(false)
-    }
-    Surface {
-        MaterialTheme.colorScheme.background.red
     }
     Column(modifier = Modifier.fillMaxWidth()){
         ElevatedButton(onClick = {expanded.value = !expanded.value}) {
-            Text(
-                text = name.random(),
-                modifier = modifier
-            )
-        }
+            Box {
+                Text(text = if (expanded.value) "Show less" else "Show more"
+                )
+            } }
         OutlinedButton(onClick = { }) {
             Text(text = "Button X")
             
