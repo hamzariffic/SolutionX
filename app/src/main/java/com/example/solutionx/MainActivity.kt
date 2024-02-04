@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ElevatedButton
@@ -53,34 +54,64 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var expanded = remember {
         mutableStateOf(false)
     }
-    Column(modifier = Modifier.fillMaxWidth()){
-        ElevatedButton(onClick = {expanded.value = !expanded.value}) {
-            Box {
-                Text(text = if (expanded.value) "Show less" else "Show more"
-                )
-            } }
-        OutlinedButton(onClick = { }) {
-            Text(text = "Button X")
-            
+    var expanded2 = remember { mutableStateOf(false) }
+    var expanded3 = remember { mutableStateOf(false) }
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+//        This is the expandable button for the UI so far! It's kinda murky but I'm gonna clean it with time
+        ElevatedButton(onClick = { expanded.value = !expanded.value }) {
+            Text(
+                text = if (expanded.value) {
+                    "Click learn more about these buttons\uD83D\uDE0A"
+                } else {
+                    "Spoiler alert! It's about Air Quality & Solar Intensity"
+                }
+            )
         }
-        FilledTonalButton(onClick = { /*TODO*/ }) {
-            Text(text = "Toned Up")
-        }
-        FloatingActionButton(onClick = { /*TODO*/ }) {
-            Text(text = "Floating")
-            
-        }
-        FilledIconButton(onClick = { /*TODO*/ }) {
-            Text(text = "Icon")
-        }
-    }
-    Row(modifier = Modifier) {
-        Box {
-            IconButton(onClick = { /*TODO*/ }) {
-                 Modifier.background(color = Color.Magenta)
+
+//I've nested these buttons to where I need to add some onClick logic to perform specific actions!
+        Row( modifier = Modifier.weight(1f)) {
+//            Air Quality data
+            OutlinedButton(onClick = { }) {
+                Text(text = "Air\uD83D\uDCA8")
+
+            }
+            Spacer(modifier = Modifier.weight(0.3f))
+
+//      Solar intensity data
+            FilledTonalButton(onClick = { expanded2.value = !expanded2.value }) {
+                Text(
+                    text = if (expanded2.value) {
+                        "Solar\uD83C\uDF1E"
+                    } else {
+                        "Solar intensity data"
+                    })
+            }
+            Spacer(modifier = Modifier.weight(0.3f))
+
+//       Ocean data
+            FloatingActionButton(onClick = {
+                expanded3.value = !expanded3.value
+            }) {
+                Text(text = if (expanded3.value) "Ocean" else "Ocean\uD83C\uDF0A")
+            }
+            Spacer(modifier = Modifier.weight(0.3f))
+
+            FilledTonalButton(onClick = {expanded2.value = !expanded.value}) {
+                Text(text = "AI")
+            }
+            Spacer(modifier = Modifier.weight(1f))
+
+            FilledIconButton(onClick = { /*TODO*/ }) {
+                Text(text = "SDG")
             }
         }
+        IconButton(onClick = { /*TODO*/ }) {
+            Modifier.background(color = Color.Magenta)
+        }
+
     }
+
 }
 
 
