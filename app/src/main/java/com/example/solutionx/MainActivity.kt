@@ -55,9 +55,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val name : List<String> = listOf("Hamza", "Ali", "Ahmed")
-    var expanded = remember {
-        mutableStateOf(false)
-    }
+    var expanded = remember { mutableStateOf(false) }
     var expanded2 = remember { mutableStateOf(false) }
     var expanded3 = remember { mutableStateOf(false) }
     var expanded4 = remember { mutableStateOf(false) }
