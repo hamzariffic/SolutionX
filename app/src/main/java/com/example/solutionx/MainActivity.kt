@@ -2,11 +2,10 @@
 
 package com.example.solutionx
 
+//import androidx.compose.material3.FilledIconButton
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -16,10 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedButton
-//import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -29,7 +26,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.ui.theme.SolutionXTheme
 
@@ -110,15 +106,15 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //                Text(text = "SDG")
 //            }
         }
-        IconButton(onClick = { /*TODO*/ }) {
-            Modifier.background(color = Color.Magenta)
-        }
         Row(modifier = Modifier.weight(1f)
             .height(IntrinsicSize.Max)
             .align(Alignment.Start)
             .fillMaxWidth()) {
-            Card {
+            Card(modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max).weight(1f)) {
                 Text(text = "Air Quality Index: 2.5")
+                Text(text = "Solar Intensity: 2.5")
+                Text(text = "Ocean Index: 2.5")
+                Text(text = "AI Index: 2.5")
             }
         }
     }
