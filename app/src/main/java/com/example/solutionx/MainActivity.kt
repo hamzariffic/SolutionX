@@ -105,6 +105,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             }
             Spacer(modifier = Modifier.weight(1f))
 
+
 //            FilledIconButton(onClick = { /*TODO*/ }) {
 //                Text(text = "SDG")
 //            }
@@ -114,7 +115,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         }
         Row(modifier = Modifier.weight(1f)
             .height(IntrinsicSize.Max)
-            .align(Alignment.Start)) {
+            .align(Alignment.Start)
+            .fillMaxWidth()) {
             Card {
                 Text(text = "Air Quality Index: 2.5")
             }

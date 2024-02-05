@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SolutionX</string>
+    <string name="MAPS_API_KEY">AIzaSyCLnQOC-Z6kp04z5oWxznSfEgZR07GK27E</string>
 </resources>
