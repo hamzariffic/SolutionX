@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.FilledIconButton
+//import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.IconButton
@@ -56,6 +56,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     }
     var expanded2 = remember { mutableStateOf(false) }
     var expanded3 = remember { mutableStateOf(false) }
+    var expanded4 = remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxWidth()) {
 //        This is the expandable button for the UI so far! It's kinda murky but I'm gonna clean it with time
@@ -97,21 +98,20 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             }
             Spacer(modifier = Modifier.weight(0.3f))
 
-            FilledTonalButton(onClick = {expanded2.value = !expanded.value}) {
-                Text(text = "AI")
+            FilledTonalButton(onClick = {expanded4.value = !expanded4.value}) {
+                Text(text = if(expanded4.value) "AI" else "\uD83E\uDD16")
             }
             Spacer(modifier = Modifier.weight(1f))
 
-            FilledIconButton(onClick = { /*TODO*/ }) {
-                Text(text = "SDG")
-            }
+//            FilledIconButton(onClick = { /*TODO*/ }) {
+//                Text(text = "SDG")
+//            }
         }
         IconButton(onClick = { /*TODO*/ }) {
             Modifier.background(color = Color.Magenta)
         }
 
     }
-
 }
 
 
