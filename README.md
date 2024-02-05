@@ -3,3 +3,18 @@ SolutionX intends to use Environments API to come up with an app that updates us
 
 The UI contains mostly buttons which are supposed to lead users to specific destinations
 
+
+**Tech Stacks**
+* User Interface: Jetpack Compose, Material Theme, and Compose Libraries
+* APIs: Environments API in Google Maps - with data for pollen, air quality, solar intensity, and Palm2API
+* Retrofit, GraphQL, and MVVM architecture
+
+**Wireframes**
+
+
+
+**Demo**
+
+
+
+
