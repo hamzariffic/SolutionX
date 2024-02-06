@@ -25,13 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.solutionx.UI.AirQualityData
 import com.example.solutionx.UI.AirQualityScreen
+import com.example.solutionx.ViewModel.AirQualityViewModel
 import com.example.solutionx.ui.theme.SolutionXTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,21 +49,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp(navController: NavHostController) {
-    val navController = rememberNavController()
     SolutionXTheme {
+        val viewModel: AirQualityViewModel = viewModel()    }
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = colorScheme.background
-        ) {
-            Greeting(navController = navController by remember {
-                mutableStateOf(navController)
-            })
-
-        }
-    }
+        ){ Greeting(navController)
         NavHost(navController = navController, startDestination = "greeting") {
-            composable("greeting") { Greeting(navController: NavController) }
-            composable("airQualityData") { AirQualityData(airData = airData) }
+            composable("greeting") { Greeting(navController) }
             composable("airQualityData") {
                 AirQualityScreen(
                     viewModel = ViewModel,
