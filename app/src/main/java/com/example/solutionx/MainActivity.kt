@@ -36,25 +36,28 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SolutionXTheme {
-                // A surface container using the 'background' color from the theme
-                val navController = rememberNavController() // We're creating a NavController instance
-                val airData = "Sample Air Quality Data" // Define airData here
-
-                NavHost(navController = navController, startDestination = "greeting") {
-                    composable("greeting") { Greeting() } // Pass navController
-                    composable("airQualityData") { AirQualityData(airData = airData) }
-
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = colorScheme.background
-                    ) {
-                        Greeting()
-                    }
+                MyApp()
             }
         }
     }
 }
 
+@Composable
+fun MyApp() {
+    val navController = rememberNavController()
+    SolutionXTheme {
+        NavHost(navController = navController, startDestination = "greeting") {
+            composable("greeting") { Greeting() }
+            composable("airQualityData") { AirQualityData(airData = airData) }
+        }
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = colorScheme.background
+        ) {
+            Greeting()
+        }
+    }
+}
 
 
 @Composable

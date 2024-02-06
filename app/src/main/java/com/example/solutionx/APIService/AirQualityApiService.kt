@@ -12,6 +12,8 @@ interface AirQualityApiService {
         @Query("lon") longitude: Double,
         // Add other necessary parameters
     ): AirQualityResponse
+
+    fun CurrentConditions(latitude: Any, longitude: Any): Any
 }
 
 data class AirQualityResponse(
