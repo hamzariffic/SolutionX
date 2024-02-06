@@ -82,7 +82,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //I've nested these buttons to where I need to add some onClick logic to perform specific actions!
         Row( modifier = Modifier.weight(1f)) {
 //            Air Quality data
-            OutlinedButton(onClick = {navController.navigate("airQuality") // Adjust destination route as needed }) {
+            OutlinedButton(onClick = {navController.navigate("airQuality")}) {
                 Text(text = "Air\uD83D\uDCA8")
 
             }
