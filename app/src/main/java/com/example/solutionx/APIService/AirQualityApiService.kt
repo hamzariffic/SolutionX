@@ -15,5 +15,14 @@ interface AirQualityApiService {
 }
 
 data class AirQualityResponse(
-    // Define the structure of the response
+    val hoursInfo: List<HourlyInfo>,
+    val regionCode: String,
+    val nextPageToken: String?,
+    val code: String,
+    val displayName: String,
+    val aqi: Int,
+    val aqiDisplay: String,
+    val color: Color,
+    val category: String,
+    val dominantPollutant: String
 )
