@@ -2,7 +2,7 @@
 
 package com.example.solutionx
 
-//import androidx.compose.material3.FilledIconButton
+/* import androidx.compose.material3.FilledIconButton */
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +18,7 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,6 +28,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.solutionx.UI.AirQualityData
 import com.example.solutionx.ui.theme.SolutionXTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,12 +40,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             SolutionXTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Hamza")
-                }
+                val navController = rememberNavController() // We're creating a NavController instance
+
+                NavHost(navController = navController, startDestination = "greeting") {
+                    composable("greeting") { Greeting("Hamza") } // Pass navController
+                    composable("airQualityData") { AirQualityData(airData = airData) }
+
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = colorScheme.background
+                    ) {
+                        Greeting("Hamza")
+                    }
             }
         }
     }
@@ -71,7 +82,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //I've nested these buttons to where I need to add some onClick logic to perform specific actions!
         Row( modifier = Modifier.weight(1f)) {
 //            Air Quality data
-            OutlinedButton(onClick = { }) {
+            OutlinedButton(onClick = {navController.navigate("airQuality") // Adjust destination route as needed }) {
                 Text(text = "Air\uD83D\uDCA8")
 
             }
