@@ -1,8 +1,5 @@
-@file:Suppress("NAME_SHADOWING")
-
 package com.example.solutionx
 
-/* import androidx.compose.material3.FilledIconButton */
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -40,16 +38,17 @@ class MainActivity : ComponentActivity() {
             SolutionXTheme {
                 // A surface container using the 'background' color from the theme
                 val navController = rememberNavController() // We're creating a NavController instance
+                val airData = "Sample Air Quality Data" // Define airData here
 
                 NavHost(navController = navController, startDestination = "greeting") {
-                    composable("greeting") { Greeting("Hamza") } // Pass navController
+                    composable("greeting") { Greeting() } // Pass navController
                     composable("airQualityData") { AirQualityData(airData = airData) }
 
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                         color = colorScheme.background
                     ) {
-                        Greeting("Hamza")
+                        Greeting()
                     }
             }
         }
@@ -59,12 +58,12 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val name : List<String> = listOf("Hamza", "Ali", "Ahmed")
-    var expanded = remember { mutableStateOf(false) }
-    var expanded2 = remember { mutableStateOf(false) }
-    var expanded3 = remember { mutableStateOf(false) }
-    var expanded4 = remember { mutableStateOf(false) }
+fun Greeting() {
+    listOf("Hamza", "Ali", "Ahmed")
+    val expanded = remember { mutableStateOf(false) }
+    val expanded2 = remember { mutableStateOf(false) }
+    val expanded3 = remember { mutableStateOf(false) }
+    val expanded4 = remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.fillMaxWidth()) {
 //        This is the expandable button for the UI so far! It's kinda murky but I'm gonna clean it with time
@@ -81,7 +80,10 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //I've nested these buttons to where I need to add some onClick logic to perform specific actions!
         Row( modifier = Modifier.weight(1f)) {
 //            Air Quality data
-            OutlinedButton(onClick = {navController.navigate("airQualityData")}) {
+            OutlinedButton(onClick = {
+                val navController = NavController()
+                navController.navigate("airQualityData")
+            }) {
                 Text(text = "Air\uD83D\uDCA8")
 
             }
@@ -116,11 +118,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 //                Text(text = "SDG")
 //            }
         }
-        Row(modifier = Modifier.weight(1f)
+        Row(modifier = Modifier
+            .weight(1f)
             .height(IntrinsicSize.Max)
             .align(Alignment.Start)
             .fillMaxWidth()) {
-            Card(modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max).weight(1f)) {
+            Card(modifier = Modifier
+                .height(intrinsicSize = IntrinsicSize.Max)
+                .weight(1f)) {
                 Text(text = "Air Quality Index: 2.5")
                 Text(text = "Solar Intensity: 2.5")
                 Text(text = "Ocean Index: 2.5")
@@ -136,6 +141,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     SolutionXTheme {
-        Greeting("Hamza Y")
+        Greeting()
     }
-}
+}}
