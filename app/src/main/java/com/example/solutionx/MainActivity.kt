@@ -24,11 +24,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.UI.AirQualityData
+import com.example.solutionx.UI.AirQualityScreen
 import com.example.solutionx.ui.theme.SolutionXTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,32 +39,43 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SolutionXTheme {
-                MyApp()
+                val navController = rememberNavController()
+                MyApp(navController)
             }
         }
     }
 }
 
 @Composable
-fun MyApp() {
+fun MyApp(navController: NavHostController) {
     val navController = rememberNavController()
     SolutionXTheme {
-        NavHost(navController = navController, startDestination = "greeting") {
-            composable("greeting") { Greeting() }
-            composable("airQualityData") { AirQualityData(airData = airData) }
-        }
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = colorScheme.background
         ) {
-            Greeting()
+            Greeting(navController = navController by remember {
+                mutableStateOf(navController)
+            })
+
+        }
+    }
+        NavHost(navController = navController, startDestination = "greeting") {
+            composable("greeting") { Greeting(navController: NavController) }
+            composable("airQualityData") { AirQualityData(airData = airData) }
+            composable("airQualityData") {
+                AirQualityScreen(
+                    viewModel = ViewModel,
+                    latitude = 39.6682,
+                    longitude = 4.0435
+                )
         }
     }
 }
 
 
 @Composable
-fun Greeting() {
+fun Greeting(navController: NavController) {
     listOf("Hamza", "Ali", "Ahmed")
     val expanded = remember { mutableStateOf(false) }
     val expanded2 = remember { mutableStateOf(false) }
@@ -84,8 +98,7 @@ fun Greeting() {
         Row( modifier = Modifier.weight(1f)) {
 //            Air Quality data
             OutlinedButton(onClick = {
-                val navController = NavController()
-                navController.navigate("airQualityData")
+                navController.navigate("AirQualityScreen")
             }) {
                 Text(text = "Air\uD83D\uDCA8")
 
@@ -146,4 +159,4 @@ fun GreetingPreview() {
     SolutionXTheme {
         Greeting()
     }
-}}
+}

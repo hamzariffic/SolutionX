@@ -7,6 +7,8 @@ import com.example.solutionx.APIService.AirQualityClient
 import com.example.solutionx.APIService.AirQualityResponse
 import kotlinx.coroutines.launch
 
+
+//This view model fetches the air quality data and exposes it to the UI
 class AirQualityViewModel : ViewModel() {
     private val airQualityClient = AirQualityClient.airQualityApiService
 
