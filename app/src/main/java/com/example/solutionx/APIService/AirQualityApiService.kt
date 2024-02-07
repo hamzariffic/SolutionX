@@ -16,6 +16,7 @@ interface AirQualityApiService {
     fun CurrentConditions(latitude: Any, longitude: Any): Any
 }
 
+//This is a data class. Should be moved elsewhere
 data class AirQualityResponse(
     val hoursInfo: List<HourlyInfo>,
     val regionCode: String,

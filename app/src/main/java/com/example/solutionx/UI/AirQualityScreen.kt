@@ -8,6 +8,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.solutionx.ViewModel.AirQualityViewModel
 
+
+//Fix this bug "    val airQualityResponse by viewModel.airQualityResponse.collectAsState()"
+//& also the bug when checking if data is available
 @Composable
 fun AirQualityScreen(navController: NavHostController, latitude: Double, longitude: Double) {
     val viewModel: AirQualityViewModel = viewModel()

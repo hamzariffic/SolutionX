@@ -1,5 +1,6 @@
 package com.example.solutionx.APIService
 
+//I'm planning on migrating all data related stuff to this class
 data class HistoryRequest(
     val hours: Int,
     val pageSize: Int,
