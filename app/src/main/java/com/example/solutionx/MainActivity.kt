@@ -1,3 +1,5 @@
+@file:Suppress("PreviewMustBeTopLevelFunction")
+
 package com.example.solutionx
 
 import android.os.Bundle
@@ -54,15 +56,15 @@ fun MyApp(navController: NavHostController) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = colorScheme.background
-        ){ Greeting(navController)
+        )
         NavHost(navController = navController, startDestination = "greeting") {
             composable("greeting") { Greeting(navController) }
             composable("airQualityData") {
-                AirQualityScreen(
-                    viewModel = ViewModel,
-                    latitude = 39.6682,
-                    longitude = 4.0435
-                )
+//                AirQualityScreen(
+//                    viewModel = ViewModel,
+//                    latitude = 39.6682,
+//                    longitude = 4.0435
+//                )
         }
     }
 }
@@ -146,11 +148,10 @@ fun Greeting(navController: NavController) {
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     SolutionXTheme {
-        Greeting()
+        Greeting(navController = rememberNavController())
     }
-}
+}}
