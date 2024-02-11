@@ -8,6 +8,8 @@ The UI contains mostly buttons which are supposed to lead users to specific dest
 * User Interface: Jetpack Compose, Material Theme, and Compose Libraries
 * APIs: Environments API in Google Maps - with data for pollen, air quality, solar intensity, and Palm2API
 * Retrofit, GraphQL, and MVVM architecture
+* Firebase
+* Google Cloud Console
 
 **Wireframes**
 
