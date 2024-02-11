@@ -63,7 +63,7 @@ fun MyApp(navController: NavHostController) {
 //                AirQualityScreen(
 //                    viewModel = ViewModel,
 //                    latitude = 39.6682,
-//                    longitude = 4.0435
+//                    longitude = 4.04354
 //                )
         }
     }
