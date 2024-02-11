@@ -130,20 +130,6 @@ fun Greeting(navController: NavController) {
 //                Text(text = "SDG")
 //            }
         }
-        Row(modifier = Modifier
-            .weight(1f)
-            .height(IntrinsicSize.Max)
-            .align(Alignment.Start)
-            .fillMaxWidth()) {
-            Card(modifier = Modifier
-                .height(intrinsicSize = IntrinsicSize.Max)
-                .weight(1f)) {
-                Text(text = "Air Quality Index: 2.5")
-                Text(text = "Solar Intensity: 2.5")
-                Text(text = "Ocean Index: 2.5")
-                Text(text = "AI Index: 2.5")
-            }
-        }
     }
 }
 
