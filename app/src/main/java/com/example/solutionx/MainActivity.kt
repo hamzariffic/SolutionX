@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScopeInstance.weight
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -78,6 +79,45 @@ fun Greeting(navController: NavController) {
     val expanded3 = remember { mutableStateOf(false) }
     val expanded4 = remember { mutableStateOf(false) }
 
+    Row( modifier = Modifier.weight(1f)) {
+//            Air Quality data
+        OutlinedButton(onClick = {
+            navController.navigate("AirQualityScreen")
+        }) {
+            Text(text = "Air\uD83D\uDCA8")
+
+        }
+        Spacer(modifier = Modifier.weight(0.3f))
+
+//      Solar intensity data
+        FilledTonalButton(onClick = { expanded2.value = !expanded2.value }) {
+            Text(
+                text = if (expanded2.value) {
+                    "Solar\uD83C\uDF1E"
+                } else {
+                    "Solar intensity data"
+                })
+        }
+        Spacer(modifier = Modifier.weight(0.3f))
+
+//       Ocean data
+        FloatingActionButton(onClick = {
+            expanded3.value = !expanded3.value
+        }) {
+            Text(text = if (expanded3.value) "Ocean" else "Ocean\uD83C\uDF0A")
+        }
+        Spacer(modifier = Modifier.weight(0.3f))
+
+        FilledTonalButton(onClick = {expanded4.value = !expanded4.value}) {
+            Text(text = if(expanded4.value) "AI" else "\uD83E\uDD16")
+        }
+        Spacer(modifier = Modifier.weight(1f))
+
+
+//            FilledIconButton(onClick = { /*TODO*/ }) {
+//                Text(text = "SDG")
+//            }
+    }
     Column(modifier = Modifier.fillMaxWidth()) {
 //        This is the expandable button for the UI so far! It's kinda murky but I'm gonna clean it with time
         ElevatedButton(onClick = { expanded.value = !expanded.value }) {
@@ -91,45 +131,6 @@ fun Greeting(navController: NavController) {
         }
 
 //I've nested these buttons to where I need to add some onClick logic to perform specific actions!
-        Row( modifier = Modifier.weight(1f)) {
-//            Air Quality data
-            OutlinedButton(onClick = {
-                navController.navigate("AirQualityScreen")
-            }) {
-                Text(text = "Air\uD83D\uDCA8")
-
-            }
-            Spacer(modifier = Modifier.weight(0.3f))
-
-//      Solar intensity data
-            FilledTonalButton(onClick = { expanded2.value = !expanded2.value }) {
-                Text(
-                    text = if (expanded2.value) {
-                        "Solar\uD83C\uDF1E"
-                    } else {
-                        "Solar intensity data"
-                    })
-            }
-            Spacer(modifier = Modifier.weight(0.3f))
-
-//       Ocean data
-            FloatingActionButton(onClick = {
-                expanded3.value = !expanded3.value
-            }) {
-                Text(text = if (expanded3.value) "Ocean" else "Ocean\uD83C\uDF0A")
-            }
-            Spacer(modifier = Modifier.weight(0.3f))
-
-            FilledTonalButton(onClick = {expanded4.value = !expanded4.value}) {
-                Text(text = if(expanded4.value) "AI" else "\uD83E\uDD16")
-            }
-            Spacer(modifier = Modifier.weight(1f))
-
-
-//            FilledIconButton(onClick = { /*TODO*/ }) {
-//                Text(text = "SDG")
-//            }
-        }
     }
 }
 
@@ -140,4 +141,4 @@ fun GreetingPreview() {
     SolutionXTheme {
         Greeting(navController = rememberNavController())
     }
-}}
+}
