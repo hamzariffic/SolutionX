@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //This is the API's object. It takes in the initial part of the API's URL
 
 object AirQualityClient {
-    private const val BASE_URL = "https://airquality.googleapis.com/v1/"
+    private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=AIzaSyAiDHeFyGtYPO8Rz5ZvR__fp1TEfAQRKck"
 
 //    currentConditions:lookup?
     private val retrofit: Retrofit = Retrofit.Builder()
