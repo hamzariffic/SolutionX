@@ -1,6 +1,9 @@
 package com.example.solutionx.UI
 
 
+import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -23,4 +26,22 @@ fun AirQualityScreen(navController: NavHostController, latitude: Double, longitu
     } else {
         // Show loading indicator or error message
     }
+
+    Card() {
+//        Current conditions
+        ElevatedButton(onClick = { navController.navigate("home") }) {
+            Text(text = "Back")
+        }
+    }
+    Card() {
+//        Hourly history
+    }
+    Card(){
+//        Heatmaps
+    }
 }
+
+//
+//Current Conditions: Real-time hourly air quality information.
+//Hourly History: Air quality history for a specific location, for a given time range, up to a maximum of 30 days.
+//Heatmaps: Color coded tiles of various indexes and pollutants.
