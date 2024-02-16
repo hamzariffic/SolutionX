@@ -20,4 +20,9 @@ The UI contains mostly buttons which are supposed to lead users to specific dest
 
 
 
+**Architecture**
+Model-view-view-Model
+
+
+
 
