@@ -1,5 +1,7 @@
 package com.example.solutionx.APIService
 
+import com.example.solutionx.model.CustomLocalAqi
+import com.example.solutionx.model.ExtraComputation
 import com.google.type.LatLng
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,14 +14,6 @@ interface AirQualityApiService {
         @Body airQualityRequest: AirQualityRequest
         ): AirQualityResponse
     fun CurrentConditions(latitude: Any, longitude: Any): Any
-}
-
-
-interface HistoryEndpoint {
-    @POST("history:lookup")
-    suspend fun getHourlyHistory(
-        @Body request: HistoryLookupRequest
-    ): HistoryLookupResponse
 }
 
 
