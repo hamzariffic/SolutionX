@@ -1,4 +1,5 @@
 package com.example.solutionx.model
-
-class airQualityData {
-}
+data class AirQualityData(
+    val airQualityResponse: String,
+    val airQualityIndex: Int
+)
