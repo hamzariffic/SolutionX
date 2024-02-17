@@ -1,4 +1,6 @@
 package com.example.solutionx.model
 
-class CustomLocalAQI {
-}
+data class CustomLocalAqi(
+    val name: String,
+    val value: Int
+)
