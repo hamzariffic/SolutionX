@@ -1,4 +1,5 @@
 package com.example.solutionx.model
-
-class hourlyInfo {
-}
+data class HourlyInfo(
+    val dateTime: String,
+    val indexes: List<Index>
+)
