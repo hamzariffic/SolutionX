@@ -12,5 +12,14 @@ fun MyApp(navController: NavHostController) {
         composable("airQualityData") {
             // Your airQualityData composable content goes here
         }
+        composable("HourlyHistoryDataComponent") {
+            // Your HourlyHistoryData composable content goes here
+        }
+        composable("HeatMapData") {
+            // Your HeatMapData composable content goes here
+        }
+        composable("AirQualityDataComponent") {
+            // Your AirQualityDataComponent composable content goes here
+        }
     }
 }
