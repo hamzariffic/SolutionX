@@ -1,4 +1,7 @@
 package com.example.solutionx.model
-
-class historyRequest {
-}
+data class HistoryRequest(
+    val hours: Int,
+    val pageSize: Int,
+    val pageToken: String?,
+    val location: Location
+)
