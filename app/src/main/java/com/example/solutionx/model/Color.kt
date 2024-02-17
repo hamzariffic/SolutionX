@@ -1,4 +1,8 @@
 package com.example.solutionx.model
 
-class Color {
-}
+data class Color(
+    val red: Int,
+    val green: Int,
+    val blue: Int,
+    val alpha: Int?
+)
