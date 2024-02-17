@@ -1,58 +1,52 @@
-package com.example.solutionx.ui
+package com.example.solutionx.UI
 
-import androidx.compose.material3.Card
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import com.example.solutionx.UI.AirQualityDataComponent
-import com.example.solutionx.UI.HeatmapDataComponent
-import com.example.solutionx.UI.HourlyHistoryDataComponent
-import com.example.solutionx.ViewModel.AirQualityViewModel
+import com.example.solutionx.model.AirQualityResponse
+import com.google.api.client.http.HttpRequestInitializer
+import com.google.api.client.http.javanet.NetHttpTransport
+import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.services.aqi.v1.AqiScopes
+import com.google.auth.http.HttpCredentialsAdapter
+import com.google.auth.oauth2.GoogleCredentials
+import java.util.Collections
 
+// Define the UI component
 @Composable
-fun AirQualityScreen(navController: NavHostController, latitude: Double, longitude: Double) {
-    val viewModel: AirQualityViewModel = viewModel()
-    val airQualityResponse by viewModel.airQualityResponse.collectAsState()
+fun AirQualityDataComponent(airQualityResponse: AirQualityResponse) {
+    Text(text = airQualityResponse.toString())
+}
 
-    // Check if data is available and display it
-    if (airQualityResponse != null) {
-        // Display air quality data using the provided UI components
-        AirQualityDataComponent(airQualityResponse!!)
-    } else {
-        // Show loading indicator or error message
-        println("Nothing here!")
-    }
-    Card() {
-        // Current conditions
-        ElevatedButton(onClick = { navController.navigate("home") }) {
-            Text(text = "Back")
+// Define the main function
+fun main(args: Array<String>) {
+    // Initialize the HTTP transport and JSON factory
+    val httpTransport = NetHttpTransport()
+    val jsonFactory = JacksonFactory()
+
+    // Get the credentials from the environment
+    val credentials = GoogleCredentials.getApplicationDefault()
+        .createScoped(Collections.singleton(AqiScopes.AQI_CURRENT_CONDITIONS))
+
+    // Create the HttpRequestInitializer
+    val requestInitializer = object : HttpRequestInitializer {
+        override fun initialize(request: com.google.api.client.http.HttpRequest) {
+            val credentialAdapter = HttpCredentialsAdapter(credentials)
+            request.setInterceptor(credentialAdapter)
         }
     }
-    Card() {
-        // Hourly history
-        ElevatedButton(onClick = {
-            // Get the hourly history data from the API
-            val hourlyHistoryResponse = viewModel.getHourlyHistory(latitude, longitude)
 
-            // Display the hourly history data using the provided UI components
-            HourlyHistoryDataComponent(hourlyHistoryResponse!!)
-        }) {
-            Text(text = "Hourly History")
-        }
-    }
-    Card(){
-        // Heatmaps
-        ElevatedButton(onClick = {
-            // Get the heatmap data from the API
-            val heatmapResponse = viewModel.getHeatmap(latitude, longitude)
+    // Build the API client
+    val service = com.google.api.services.aqi.v1.Aqi.Builder(httpTransport, jsonFactory, requestInitializer)
+        .setApplicationName("AQI API Kotlin Sample")
+        .build()
 
-            // Display the heatmap data using the provided UI components
-            HeatmapDataComponent<Any>(heatmapResponse!!)
-        }) {
-            Text(text = "Heatmaps")
+    // Make the API request
+    val response = service.projects().locations().currentConditions()
+        .get("your-project-id", "your-location-id")
+        .execute().also {
+
+            // Print the response
+            val it = null
+            println(it)
         }
-    }
 }
