@@ -1,4 +1,6 @@
 package com.example.solutionx.model
-
-class historicalDataResponse {
-}
+data class HistoricalDataResponse(
+    val hoursInfo: List<HourlyInfo>,
+    val regionCode: String,
+    val nextPageToken: String?
+)
