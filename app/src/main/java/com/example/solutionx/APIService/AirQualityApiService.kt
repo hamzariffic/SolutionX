@@ -5,7 +5,6 @@ import com.example.solutionx.model.ExtraComputation
 import com.google.type.LatLng
 import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface AirQualityApiService {
 //    The current endpoint defines the location of the individual to provide the air quality data
