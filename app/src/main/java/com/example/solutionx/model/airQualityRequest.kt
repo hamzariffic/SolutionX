@@ -1,5 +1,6 @@
 package com.example.solutionx.model
 
+import com.example.solutionx.APIService.ColorPalette
 import com.google.type.LatLng
 
 data class AirQualityRequest(

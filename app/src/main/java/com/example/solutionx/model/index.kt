@@ -1,6 +1,6 @@
 package com.example.solutionx.model
 
-import com.example.solutionx.APIService.Color
+
 data class Index(
     val code: String,
     val displayName: String,
