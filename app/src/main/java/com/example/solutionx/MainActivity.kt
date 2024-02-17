@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.UI.Home
+import com.example.solutionx.UI.MyApp
 import com.example.solutionx.ui.theme.SolutionXTheme
 
 class MainActivity : ComponentActivity() {

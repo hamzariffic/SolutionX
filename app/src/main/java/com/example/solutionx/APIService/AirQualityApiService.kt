@@ -17,7 +17,6 @@ interface AirQualityApiService {
 }
 
 
-//This is a data class for Air quality Data. Should be moved elsewhere
 data class AirQualityRequest(
     val location: LatLng,
     val extraComputations: List<ExtraComputation>,
