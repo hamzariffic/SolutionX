@@ -1,5 +1,11 @@
 package com.example.solutionx.APIService
 
+import com.example.solutionx.model.CustomLocalAqi
+import com.example.solutionx.model.ExtraComputation
+import com.example.solutionx.model.HealthRecommendations
+import com.example.solutionx.model.Pollutant
+import com.google.type.LatLng
+
 //I'm planning on migrating all data related stuff to this class
 data class HistoryRequest(
     val hours: Int,
@@ -39,4 +45,52 @@ data class Color(
 data class Location(
     val latitude: Double,
     val longitude: Double
+)
+
+data class AirQualityRequest(
+    val location: LatLng,
+    val extraComputations: List<ExtraComputation>,
+    val uaqiColorPalette: ColorPalette,
+    val customLocalAqis: List<CustomLocalAqi>,
+    val universalAqi: Boolean,
+    val languageCode: String
+)
+
+data class AirQualityResponse(
+    val dateTime: String,
+    val regionCode: String,
+    val indexes: List<Index>,
+    val pollutants: List<Pollutant<Any?>>,
+    val healthRecommendations: HealthRecommendations
+)
+
+
+//This is a data class for history. Should be moved elsewhere
+data class HistoryLookupRequest(
+    val pageSize: Int,
+    val pageToken: String,
+    val location: LatLng,
+    val extraComputations: List<ExtraComputation>,
+    val uaqiColorPalette: ColorPalette,
+    val customLocalAqis: List<CustomLocalAqi>,
+    val timeRange: TimeRange,
+    val universalAqi: Boolean,
+    val languageCode: String
+)
+
+data class HistoryLookupResponse(
+    val hoursInfo: List<HourlyInfo>,
+    val regionCode: String,
+    val nextPageToken: String
+)
+
+data class TimeRange(
+    val dateTime: String,
+    val hours: Int,
+    val period: Interval
+)
+
+data class Interval(
+    val startTime: String,
+    val endTime: String
 )
