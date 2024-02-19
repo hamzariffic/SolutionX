@@ -4,12 +4,10 @@ package com.example.solutionx.UI
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.example.solutionx.model.AirQualityResponse
+import com.example.solutionx.model.AirQualityViewModel
 import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
-import com.google.api.services.aqi.v1.AqiScopes
-import com.google.auth.http.HttpCredentialsAdapter
-import com.google.auth.oauth2.GoogleCredentials
 import java.util.Collections
 
 // Define the main function
@@ -45,7 +43,7 @@ fun main(args: Array<String>) {
 
 // Define the UI component
 @Composable
-fun AirQualityDataComponent(airQualityResponse: AirQualityResponse) {
-    Text(text = airQualityResponse.toString())
+fun AirQualityDataComponent(viewModel: AirQualityViewModel = viewModel()) {
+    Text(text = AirQualityResponse.toString())
 }
 
