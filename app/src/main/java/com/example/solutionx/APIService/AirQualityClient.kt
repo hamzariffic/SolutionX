@@ -12,6 +12,7 @@ object AirQualityClient {
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
     val airQualityApiService: AirQualityApiService = retrofit.create(AirQualityApiService::class.java)
