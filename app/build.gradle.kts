@@ -66,6 +66,8 @@ dependencies {
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:1.0.0")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:1.2.0")
 
 //    Jackson factory
     implementation("com.google.http-client:google-http-client-jackson2:1.25.0")
