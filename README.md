@@ -10,7 +10,7 @@ The UI contains mostly buttons which are supposed to lead users to specific dest
 * Retrofit, GraphQL, and MVVM architecture
 * Firebase
 * Google Cloud Console
-* Gemini API
+* Gemini API for chat interfaces
 
 **Wireframes**
 
