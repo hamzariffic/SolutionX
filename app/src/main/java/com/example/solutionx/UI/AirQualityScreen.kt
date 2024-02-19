@@ -2,6 +2,7 @@ package com.example.solutionx.UI
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.model.AirQualityResponse
 import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
@@ -49,4 +50,10 @@ fun main(args: Array<String>) {
             val it = null
             println(it)
         }
+}
+
+@Preview
+@Composable
+fun AirQualityData() {
+
 }
