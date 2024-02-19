@@ -56,7 +56,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation(platform("androidx.compose:compose-bom:2024.02.00"))
     implementation("androidx.compose.ui:ui")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("androidx.compose.ui:ui-graphics")
@@ -66,24 +66,24 @@ dependencies {
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-scalars:1.0.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:1.2.0")
 
 //    Jackson factory
-    implementation("com.google.http-client:google-http-client-jackson2:1.25.0")
+    implementation("com.google.http-client:google-http-client-jackson2:1.44.1")
 
 // OkHttp (required by Retrofit)
-    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation("com.google.firebase:protolite-well-known-types:18.0.0")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.constraintlayout:constraintlayout-compose-android:1.1.0-alpha13")
     implementation("androidx.room:room-compiler:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
