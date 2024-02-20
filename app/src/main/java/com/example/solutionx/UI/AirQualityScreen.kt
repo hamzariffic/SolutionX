@@ -2,7 +2,6 @@ package com.example.solutionx.UI
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.model.AirQualityResponse
 import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
@@ -37,9 +36,10 @@ fun main(args: Array<String>) {
     }
 
     // Build the API client
-    val service = com.google.api.services.aqi.v1.Aqi.Builder(httpTransport, jsonFactory, requestInitializer)
-        .setApplicationName("AQI API Kotlin Sample")
-        .build()
+    val service =
+        com.google.api.services.aqi.v1.Aqi.Builder(httpTransport, jsonFactory, requestInitializer)
+            .setApplicationName("AQI API Kotlin Sample")
+            .build()
 
     // Make the API request
     val response = service.projects().locations().currentConditions()
