@@ -1,6 +1,6 @@
 package com.example.solutionx.model
 
-
+//Contains air quality indices
 data class Index(
     val code: String,
     val displayName: String,
