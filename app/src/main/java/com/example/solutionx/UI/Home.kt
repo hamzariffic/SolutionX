@@ -25,13 +25,21 @@ import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.APIService.AirQualityClient.airQualityApiService
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.AirQualityViewModel
+import com.example.solutionx.model.HistoryViewModel
+import com.example.solutionx.model.HourlyInfo
 import com.example.solutionx.model.Location
 import com.example.solutionx.ui.theme.SolutionXTheme
 import kotlinx.coroutines.launch
 
 @Composable
-fun Home(navController: NavController, locationViewModel: AirQualityViewModel.LocationViewModel = viewModel()) {
-// Within Home composable
+fun Home(navController: NavController) {
+//Initialising the viewModels
+    val locationViewModel = viewModel<AirQualityViewModel.LocationViewModel>()
+    val historyViewModel = viewModel<HistoryViewModel>()
+
+    //    Fetch hourly info
+    val hourlyHistoryData = remember { mutableStateOf<List<HourlyInfo>?>(null) }
+
     val userLocation = locationViewModel.userLocation.observeAsState(initialValue = Location(1.2921, 36.8219))
 
     // Define state for expanded button
@@ -133,11 +141,11 @@ fun Home(navController: NavController, locationViewModel: AirQualityViewModel.Lo
 
             Spacer(modifier = Modifier.weight(0.3f))
 
-            // Ocean Button
+            // History Button
             FloatingActionButton(onClick = {
                 expanded.value = !expanded.value
             }) {
-                Text(text = if (expanded.value) "Ocean" else "Ocean\uD83C\uDF0A")
+                Text(text = if (expanded.value) "Air Quality History" else "Ocean\uD83C\uDF0A")
             }
 
             Spacer(modifier = Modifier.weight(0.3f))
