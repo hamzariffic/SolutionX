@@ -26,7 +26,6 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
                         println("Could not get Air Quality Conditions")
                     }
                 }
-
                 override fun onFailure(call: Call<AirQualityResponse>, t: Throwable) {
                     println("Network request failed: ${t.message}")
                 }

@@ -24,13 +24,13 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.APIService.AirQualityClient.airQualityApiService
 import com.example.solutionx.model.AirQualityResponse
+import com.example.solutionx.model.AirQualityViewModel
 import com.example.solutionx.model.Location
-import com.example.solutionx.model.LocationViewModel
 import com.example.solutionx.ui.theme.SolutionXTheme
 import kotlinx.coroutines.launch
 
 @Composable
-fun Home(navController: NavController, locationViewModel: LocationViewModel = viewModel()) {
+fun Home(navController: NavController, locationViewModel: AirQualityViewModel.LocationViewModel = viewModel()) {
 // Within Home composable
     val userLocation = locationViewModel.userLocation.observeAsState(initialValue = Location(1.2921, 36.8219))
 
