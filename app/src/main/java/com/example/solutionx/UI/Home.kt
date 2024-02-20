@@ -7,6 +7,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -15,12 +17,14 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.solutionx.APIService.AirQualityApiService
 import com.example.solutionx.APIService.AirQualityClient.airQualityApiService
 import com.example.solutionx.model.AirQualityResponse
+import com.example.solutionx.model.Location
 import com.example.solutionx.model.LocationViewModel
 import com.example.solutionx.ui.theme.SolutionXTheme
 import kotlinx.coroutines.launch
@@ -28,10 +32,11 @@ import kotlinx.coroutines.launch
 @Composable
 fun Home(navController: NavController, locationViewModel: LocationViewModel = viewModel()) {
 // Within Home composable
-    val userLocation = viewModel().userLocation.observeAsState()
+    val userLocation = locationViewModel.userLocation.observeAsState(initialValue = Location(1.2921, 36.8219))
 
     // Define state for expanded button
-    val expanded = remember { mutableStateOf(false) }
+    val expanded = remember { mutableStateOf(
+        false) }
     // Define state for search query
     val searchQuery = remember { mutableStateOf("") }
     // Define state for air quality response
@@ -45,7 +50,7 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
 //Fetching inside a coroutine scope since the endpoint is inside a suspend function
         coroutineScope.launch {
             // API call
-            airQualityResponse.value = airQualityApiService().currentConditions(location)
+            airQualityResponse.value = airQualityApiService.currentConditions(location)
         }
     }
 
@@ -75,7 +80,7 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
     @Composable
     fun AirQualityDataDisplay(airQuality: AirQualityResponse) {
         // Replace this with your UI to display air quality data
-        // Example: Text("Air Quality: ${airQuality.indexes.firstOrNull()?.aqi}")
+     Text("Air Quality: ${airQuality.indexes.firstOrNull()?.aqi}")
     }
 
     // Main UI layout
@@ -136,11 +141,6 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
             }
 
             Spacer(modifier = Modifier.weight(0.3f))
-
-            // SDG Button
-            FilledTonalButton(onClick = { /*TODO*/ }) {
-                Text(text = "SDG")
-            }
         }
 
         // Column with additional content
@@ -166,6 +166,20 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
     }
 }
 
+@Composable
+fun <T> LiveData<T>.observeAsState(initialValue: T): State<T> {
+    val state = remember { mutableStateOf(initialValue) }
+    val observer = Observer<T> { value ->
+        state.value = value
+    }
+    observeForever(observer)
+    DisposableEffect(this) {
+        onDispose {
+            removeObserver(observer)
+        }
+    }
+    return state
+}
 
 @Preview(showBackground = true)
 @Composable
