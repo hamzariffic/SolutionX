@@ -67,7 +67,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
-    implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:1.2.0")
 
 //    Jackson factory
     implementation("com.google.http-client:google-http-client-jackson2:1.44.1")
@@ -79,7 +78,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.constraintlayout:constraintlayout-compose-android:1.1.0-alpha13")
-    implementation("androidx.room:room-compiler:2.6.1")
+    implementation("com.google.android.gms:play-services-location:21.1.0")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
