@@ -17,15 +17,23 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.APIService.AirQualityApiService
 import com.example.solutionx.model.AirQualityResponse
+import com.example.solutionx.model.Location
+import com.example.solutionx.model.LocationViewModel
 import com.example.solutionx.ui.theme.SolutionXTheme
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 
 @Composable
-fun Home(navController: NavController) {
+fun Home(navController: NavController, locationViewModel: LocationViewModel = viewModel()) {
+// Within Home composable
+    val userLocation by locationViewModel.userLocation.observeAsState()
+
+
     // Define state for expanded button
     val expanded = remember { mutableStateOf(false) }
     // Define state for search query
@@ -33,14 +41,15 @@ fun Home(navController: NavController) {
     // Define state for air quality response
     val airQualityResponse = remember { mutableStateOf<AirQualityResponse?>(null) }
     // Coroutine scope for handling async operations
+
     val coroutineScope = rememberCoroutineScope()
 
-    // Function to fetch air quality data (Replace with actual API call)
+    // Function to fetch air quality data
     fun fetchAirQualityData(location: String) {
-        // Example API call or logic to fetch air quality data
+//Fetching inside a coroutine scope since the endpoint is inside a suspend function
         coroutineScope.launch {
-            // Replace the following line with actual API call
-             airQualityResponse.value = AirQualityApiService.getCurrentConditions(location)
+            // API call
+            airQualityResponse.value = AirQualityApiService.CurrentConditions(location)
         }
     }
 
@@ -117,7 +126,8 @@ fun Home(navController: NavController) {
                         "Solar\uD83C\uDF1E"
                     } else {
                         "Solar intensity data"
-                    })
+                    }
+                )
             }
 
             Spacer(modifier = Modifier.weight(0.3f))
