@@ -13,7 +13,7 @@ fun MyApp(navController: NavHostController) {
             // Your airQualityData composable content goes here
         }
         composable("HourlyHistoryDataComponent") {
-            // Your HourlyHistoryData composable content goes here
+            HourlyHistoryDataComponent(hourlyHistoryResponse = listOf())
         }
         composable("HeatMapData") {
             // Your HeatMapData composable content goes here
