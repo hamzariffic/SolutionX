@@ -15,7 +15,9 @@ interface AirQualityApiService {
     @POST("history:lookup")
     suspend fun getAirQualityHistory(
         @Body historyLookupRequest: HistoryRequest
-    ): HistoryLookupResponse
+    ): List<HourlyInfo>
+
+    suspend fun getHourlyAirQualityHistory(historyRequest: HistoryRequest): List<HourlyInfo>
 
     companion object {
         private const val BASE_URL = "https://your_base_url_here/"
