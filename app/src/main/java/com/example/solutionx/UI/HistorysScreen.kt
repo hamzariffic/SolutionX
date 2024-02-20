@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.solutionx.APIService.HistoryRequest
+import com.example.solutionx.model.HistoryResponse
 import kotlinx.coroutines.launch
 
 @Composable
