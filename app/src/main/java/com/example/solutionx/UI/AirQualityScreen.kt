@@ -51,9 +51,3 @@ fun main(args: Array<String>) {
             println(it)
         }
 }
-
-@Preview
-@Composable
-fun AirQualityData() {
-
-}
