@@ -11,7 +11,7 @@ import com.google.auth.http.HttpCredentialsAdapter
 import com.google.auth.oauth2.GoogleCredentials
 import java.util.Collections
 
-// Define the UI component
+// Defining the UI component
 @Composable
 fun AirQualityDataComponent(airQualityResponse: AirQualityResponse) {
     Text(text = airQualityResponse.toString())
