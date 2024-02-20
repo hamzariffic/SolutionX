@@ -1,7 +1,5 @@
 package com.example.solutionx.UI
 
-
-// Import the necessary components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -21,18 +19,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.APIService.AirQualityApiService
+import com.example.solutionx.APIService.AirQualityClient.airQualityApiService
 import com.example.solutionx.model.AirQualityResponse
-import com.example.solutionx.model.Location
 import com.example.solutionx.model.LocationViewModel
 import com.example.solutionx.ui.theme.SolutionXTheme
-import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 
 @Composable
 fun Home(navController: NavController, locationViewModel: LocationViewModel = viewModel()) {
 // Within Home composable
-    val userLocation by locationViewModel.userLocation.observeAsState()
-
+    val userLocation = viewModel().userLocation.observeAsState()
 
     // Define state for expanded button
     val expanded = remember { mutableStateOf(false) }
@@ -49,7 +45,7 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
 //Fetching inside a coroutine scope since the endpoint is inside a suspend function
         coroutineScope.launch {
             // API call
-            airQualityResponse.value = AirQualityApiService.CurrentConditions(location)
+            airQualityResponse.value = airQualityApiService().currentConditions(location)
         }
     }
 
@@ -170,6 +166,7 @@ fun Home(navController: NavController, locationViewModel: LocationViewModel = vi
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
@@ -177,3 +174,5 @@ fun HomePreview() {
         Home(navController = rememberNavController())
     }
 }
+
+
