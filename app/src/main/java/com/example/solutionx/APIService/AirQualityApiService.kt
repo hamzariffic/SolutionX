@@ -14,20 +14,18 @@ interface AirQualityApiService {
 
     @POST("history:lookup")
     suspend fun getAirQualityHistory(
-        @Body historyLookupRequest: HistoryLookupRequest
+        @Body historyLookupRequest: HistoryRequest
     ): HistoryLookupResponse
 
-    companion object
-}
+    companion object {
+        private const val BASE_URL = "https://your_base_url_here/"
 
-//object AirQualityClient {
-//    private const val BASE_URL = "https://airquality.googleapis.com/v1/"
-//
-//    private val retrofit: Retrofit = Retrofit.Builder()
-//        .baseUrl(BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    val airQualityApiService: AirQualityApiService = retrofit.create(AirQualityApiService::class.java)
-//}
+        fun create(): AirQualityApiService {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
+            return retrofit.create(AirQualityApiService::class.java)
+        }
+    }}
