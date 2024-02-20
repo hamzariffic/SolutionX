@@ -2,13 +2,13 @@ package com.example.solutionx.model
 
 import androidx.lifecycle.ViewModel
 import com.example.solutionx.APIService.AirQualityApiService
-import com.example.solutionx.APIService.HistoryLookupResponse
 import com.example.solutionx.APIService.HistoryRequest
+import com.example.solutionx.APIService.HourlyInfo
 
-class HistoryViewModel<HistoryResponse> : ViewModel() {
+class HistoryViewModel : ViewModel() {
     private val airQualityApiService = AirQualityApiService.create()
-
-    suspend fun fetchAirQualityHistory(request: HistoryRequest): HistoryLookupResponse {
-        return airQualityApiService.getAirQualityHistory(request)
+    suspend fun fetchAirQualityHistory(historyRequest: HistoryRequest): List<HourlyInfo> {
+        return airQualityApiService.getHourlyAirQualityHistory(historyRequest)
     }
+
 }
