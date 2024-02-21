@@ -68,8 +68,11 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
 
-//    Jackson factory
-    implementation("com.google.http-client:google-http-client-jackson2:1.44.1")
+//   Maps
+    implementation("com.google.auth:google-auth-library-oauth2-http:0.25.0")
+    implementation("com.google.http-client:google-http-client-jackson2:1.41.1")
+    implementation("com.google.api-client:google-api-client:1.41.1")
+    implementation("com.google.api-client:google-api-client-gson:1.41.1")
 
 // OkHttp (required by Retrofit)
     implementation ("com.squareup.okhttp3:okhttp:4.12.0")
