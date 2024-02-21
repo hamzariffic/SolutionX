@@ -4,22 +4,22 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+//import  com.example.solutionx.UI.HeatmapDataComponent
 
 @Composable
 fun MyApp(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "Home") {
         composable("Home") { Home(navController) }
-        composable("airQualityData") {
-            // Your airQualityData composable content goes here
-        }
+        composable("airQualityDataComponent") {
+            AirQualityDataComponent()        }
         composable("HourlyHistoryDataComponent") {
             HourlyHistoryDataComponent(hourlyHistoryResponse = listOf())
         }
         composable("HeatMapData") {
-            // Your HeatMapData composable content goes here
+//            HeatmapDataComponent()
         }
         composable("AirQualityDataComponent") {
-            // Your AirQualityDataComponent composable content goes here
-        }
+            AirQualityDataComponent()        }
+//        composable("")
     }
 }
