@@ -1,6 +1,5 @@
 package com.example.solutionx.model
-
-enum class ExtraComputation {
+public enum class ExtraComputation {
     HEALTH_RECOMMENDATIONS,
     DOMINANT_POLLUTANT_CONCENTRATION,
     POLLUTANT_CONCENTRATION,
