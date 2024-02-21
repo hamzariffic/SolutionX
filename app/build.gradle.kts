@@ -70,9 +70,10 @@ dependencies {
 
 //   Maps
     implementation("com.google.auth:google-auth-library-oauth2-http:0.25.0")
-    implementation("com.google.http-client:google-http-client-jackson2:1.41.1")
+    implementation("com.google.http-client:google-http-client-jackson2:1.44.1")
     implementation("com.google.api-client:google-api-client:1.41.1")
     implementation("com.google.api-client:google-api-client-gson:1.41.1")
+    implementation("com.google.apis:google-api-services-aqi:v1-rev20211201-1.31.0")
 
 // OkHttp (required by Retrofit)
     implementation ("com.squareup.okhttp3:okhttp:4.12.0")
