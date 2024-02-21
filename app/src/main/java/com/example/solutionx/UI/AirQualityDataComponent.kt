@@ -1,6 +1,5 @@
 package com.example.solutionx.UI
 
-// Import the necessary libraries
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.example.solutionx.model.AirQualityResponse
@@ -42,8 +41,9 @@ fun main(args: Array<String>) {
 }
 
 // Define the UI component
+@JvmOverloads
 @Composable
-fun AirQualityDataComponent(viewModel: AirQualityViewModel = viewModel()) {
+fun AirQualityDataComponent(viewModel: AirQualityViewModel = viewModel) {
     Text(text = AirQualityResponse.toString())
 }
 
