@@ -189,6 +189,12 @@ fun <T> LiveData<T>.observeAsState(initialValue: T): State<T> {
     return state
 }
 
+
+///To be added :
+//map controlls
+//navigation bar which should be blurred and shown inline to ensure that the user does not
+//struggle to view the contents of the air quality application.
+
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
