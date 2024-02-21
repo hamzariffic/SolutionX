@@ -12,27 +12,28 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewModel() {
-    class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewModel() {
-        private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
-        val airQualityData: LiveData<AirQualityResponse> get() = _airQualityData
+    private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
 
-        suspend fun fetchAirQualityData(airQualityRequest: AirQualityRequest) {
-//            Created an extensible class for .enque callback function. I'm not sure it's the right approach
-            val call: AirQualityResponse = apiService.currentConditions(airQualityRequest.toString())
-            call.enqueue(object : Callback<AirQualityResponse> {
-                override fun onResponse(call: Call<AirQualityResponse>, response: Response<AirQualityResponse>) {
+    suspend fun fetchAirQualityData(airQualityRequest: AirQualityRequest) {
+        apiService.currentConditions(airQualityRequest)
+            .enqueue(object : Callback<AirQualityResponse> {
+                override fun onResponse(
+                    call: Call<AirQualityResponse>,
+                    response: Response<AirQualityResponse>,
+                ) {
                     if (response.isSuccessful) {
                         _airQualityData.value = response.body()
                     } else {
                         println("Could not get Air Quality Conditions")
                     }
                 }
+
                 override fun onFailure(call: Call<AirQualityResponse>, t: Throwable) {
                     println("Network request failed: ${t.message}")
                 }
             })
-        }
     }
+}
 
 
 class LocationViewModel(context: Context) : ViewModel() {
@@ -47,5 +48,5 @@ class LocationViewModel(context: Context) : ViewModel() {
         fusedLocationClient.lastLocation.addOnSuccessListener {
             _userLocation.value = Location(it.latitude, it.longitude)
         }
-    }}
+    }
 }

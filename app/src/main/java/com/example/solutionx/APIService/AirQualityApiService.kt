@@ -2,6 +2,7 @@ package com.example.solutionx.APIService
 
 import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
+import com.example.solutionx.model.HeatmapTileResponse
 import com.example.solutionx.model.HistoryLookupRequest
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
@@ -28,7 +29,7 @@ interface AirQualityApiService {
         @Path("zoom") zoom: Int,
         @Path("x") x: Int,
         @Path("y") y: Int
-    ): ResponseBody
+    ): HeatmapTileResponse
 
 
 //    suspend fun getHourlyAirQualityHistory(historyRequest: HistoryRequest): List<HourlyInfo>
