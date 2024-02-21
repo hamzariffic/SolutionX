@@ -17,7 +17,8 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
         val airQualityData: LiveData<AirQualityResponse> get() = _airQualityData
 
         suspend fun fetchAirQualityData(airQualityRequest: AirQualityRequest) {
-            val call: Call<AirQualityResponse> = apiService.currentConditions(airQualityRequest.toString())
+//            Created an extensible class for .enque callback function. I'm not sure it's the right approach
+            val call: AirQualityResponse = apiService.currentConditions(airQualityRequest.toString())
             call.enqueue(object : Callback<AirQualityResponse> {
                 override fun onResponse(call: Call<AirQualityResponse>, response: Response<AirQualityResponse>) {
                     if (response.isSuccessful) {
