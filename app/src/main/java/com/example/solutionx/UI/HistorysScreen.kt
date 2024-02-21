@@ -8,7 +8,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.solutionx.APIService.ColorPalette
-import com.example.solutionx.APIService.HistoryRequest
 import com.example.solutionx.model.CustomLocalAqi
 import com.example.solutionx.model.ExtraComputation
 import com.example.solutionx.model.HistoryLookupRequest
@@ -32,16 +31,16 @@ fun HistoryScreen(historyViewModel: com.example.solutionx.model.HistoryViewModel
         location = LatLng(37.7749, -122.4194),
         extraComputations = listOf(ExtraComputation()),
         uaqiColorPalette = ColorPalette(),
-        customLocalAqis = listOf(CustomLocalAqi()),
+        customLocalAqis = listOf(CustomLocalAqi("Air", 1)),
         timeRange = TimeRange(),
         universalAqi = true,
         languageCode = "en"
     )
 
     // Function to fetch air quality history data
-    fun fetchHistoryData(request: HistoryRequest) {
+    fun fetchHistoryData(request: HistoryLookupRequest) {
         coroutineScope.launch {
-            historyData.value = historyViewModel.fetchHourlyAirQualityHistory(request)
+            historyData.value = historyViewModel.fetchAirQualityHistory(request)
         }
     }
 
