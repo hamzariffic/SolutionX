@@ -1,11 +1,24 @@
 package com.example.solutionx.UI
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.*
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.State
@@ -24,23 +37,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.APIService.AirQualityClient.airQualityApiService
 import com.example.solutionx.model.AirQualityResponse
-import com.example.solutionx.model.AirQualityViewModel
-import com.example.solutionx.model.HistoryViewModel
 import com.example.solutionx.model.HourlyInfo
-import com.example.solutionx.model.Location
 import com.example.solutionx.ui.theme.SolutionXTheme
+import com.example.solutionx.viewModels.HistoryViewModel
+import com.example.solutionx.viewModels.LocationViewModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun Home(navController: NavController) {
 //Initialising the viewModels
-    val locationViewModel = viewModel<AirQualityViewModel.LocationViewModel>()
+    val locationViewModel = viewModel<LocationViewModel>()
     val historyViewModel = viewModel<HistoryViewModel>()
 
     //    Fetch hourly info
     val hourlyHistoryData = remember { mutableStateOf<List<HourlyInfo>?>(null) }
 
-    val userLocation = locationViewModel.userLocation.observeAsState(initialValue = Location(1.2921, 36.8219))
+    val userLocation = locationViewModel.userLocation.observeAsState()
 
     // Define state for expanded button
     val expanded = remember { mutableStateOf(
@@ -175,7 +187,7 @@ fun Home(navController: NavController) {
 }
 
 @Composable
-fun <T> LiveData<T>.observeAsState(initialValue: T): State<T> {
+fun <T> LiveData<T>.observeAsState(): State<T> {
     val state = remember { mutableStateOf(initialValue) }
     val observer = Observer<T> { value ->
         state.value = value
