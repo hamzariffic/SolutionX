@@ -1,49 +1,75 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.solutionx.UI
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import com.example.solutionx.model.AirQualityResponse
-import com.example.solutionx.model.AirQualityViewModel
+import com.example.solutionx.model.HealthRecommendations
+import com.example.solutionx.viewModels.AirQualityViewModel
 import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
+import com.google.auth.oauth2.GoogleCredentials
 import com.google.api.client.json.jackson2.JacksonFactory
-import java.util.Collections
 
-// Define the main function
-fun main(args: Array<String>) {
+@Composable
+fun AirQualityDataComponent(viewModel: AirQualityViewModel = AirQualityViewModel()) {
+    val airQualityResponse by viewModel.airQualityData.observeAsState()
+    Text(text = airQualityResponse.toString())
+
+    // Initiate fetching air quality data when the component is first composed
+    LaunchedEffect(Unit) {
+        viewModel.fetchAirQualityData()
+    }
+    // Display the air quality data
+    Text(text = airQualityResponse.toString())
+}
+
+private fun fetchAirQualityData(): AirQualityResponse {
     // Initialize the HTTP transport and JSON factory
     val httpTransport = NetHttpTransport()
     val jsonFactory = JacksonFactory()
 
     // Get the credentials from the environment
     val credentials = GoogleCredentials.getApplicationDefault()
-        .createScoped(Collections.singleton(AqiScopes.AQI_CURRENT_CONDITIONS))
 
     // Create the HttpRequestInitializer
-    val requestInitializer = object : HttpRequestInitializer {
-        override fun initialize(request: com.google.api.client.http.HttpRequest) {
-            val credentialAdapter = HttpCredentialsAdapter(credentials)
-            request.setInterceptor(credentialAdapter)
-        }
+    val requestInitializer = HttpRequestInitializer { request ->
+        val credentialAdapter = HttpCredentialsAdapter(credentials)
+        request.setInterceptor(credentialAdapter)
     }
 
     // Build the API client
-    val service = com.google.api.services.aqi.v1.Aqi.Builder(httpTransport, jsonFactory, requestInitializer)
-        .setApplicationName("AQI API Kotlin Sample")
+    val service = Aqi.Builder(httpTransport, jsonFactory, requestInitializer)
+        .setApplicationName("SolutionX")
         .build()
 
     // Make the API request
-    val response = service.projects().locations().currentConditions().get("your-project-id", "your-location-id")
+    val apiKey = "AIzaSyAiDHeFyGtYPO8Rz5ZvR__fp1TEfAQRKck"
+
+    val response = service.projects().locations().currentConditions().get("solutionx-413420", "ChIJ5xhxvFMQLxgRdYHS8XZTNgs")
+        .setKey(apiKey) // Include API key if required
         .execute()
 
-    // Print the response
-    println(response)
+    // Parse the response into the data class
+    return AirQualityResponse(dateTime = "", regionCode = "", indexes = emptyList(), pollutants = emptyList(), healthRecommendations = HealthRecommendations())
 }
 
-// Define the UI component
-@JvmOverloads
 @Composable
-fun AirQualityDataComponent(viewModel: AirQualityViewModel = viewModel) {
-    Text(text = AirQualityResponse.toString())
+fun AirQualityDataComponentt(viewModel: AirQualityViewModel = viewModel) {
+    val airQualityResponse by viewModel.airQualityData.observeAsState()
+
+    LaunchedEffect(Unit) {
+        // Fetch air quality data when the component is first composed
+        val airQualityRequest = null
+        viewModel.run { aalityRequest?.let { fetchAirQualityData(it: AirQualityRequest) } }
+    }
+
+    // Display the air quality data
+    airQualityResponse?.let { response ->
+        Text(text = response.toString())
+    }
 }
 
