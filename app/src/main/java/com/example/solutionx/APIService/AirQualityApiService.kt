@@ -1,6 +1,7 @@
+@file:Suppress("PackageName")
+
 package com.example.solutionx.APIService
 
-import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
 import com.example.solutionx.model.HistoryLookupRequest
@@ -14,7 +15,7 @@ import retrofit2.http.Path
 interface AirQualityApiService {
     @POST("currentConditions:lookup")
     suspend fun currentConditions(
-        @Body airQualityRequest: AirQualityRequest
+        @Body airQualityRequest: String
     ): AirQualityResponse
 
     @POST("history:lookup")
