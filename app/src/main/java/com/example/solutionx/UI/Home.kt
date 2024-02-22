@@ -77,7 +77,7 @@ fun Home(navController: NavController) {
     // Function to handle search button click
     fun onSearchClick() {
         fetchAirQualityData(searchQuery.value)
-        // You can also navigate to a specific screen using navController.navigate("YourScreen")
+
     }
 
     // Function to handle search text change
@@ -201,11 +201,6 @@ fun <T> LiveData<T>.observeAsState(): State<T> {
     return state
 }
 
-
-///To be added :
-//map controlls
-//navigation bar which should be blurred and shown inline to ensure that the user does not
-//struggle to view the contents of the air quality application.
 
 @Preview(showBackground = true)
 @Composable
