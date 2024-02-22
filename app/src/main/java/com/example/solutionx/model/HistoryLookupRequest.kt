@@ -1,15 +1,16 @@
 package com.example.solutionx.model
 
-import com.example.solutionx.APIService.ColorPalette
+import android.graphics.Color
+import com.google.android.gms.maps.model.LatLng
 
 data class HistoryLookupRequest(
     val pageSize: Int,
     val pageToken: String,
-    val location: com.google.android.gms.maps.model.LatLng,
+    val location: LatLng,
     val extraComputations: List<ExtraComputation>,
-    val uaqiColorPalette: ColorPalette,
     val customLocalAqis: List<CustomLocalAqi>,
-    val timeRange: TimeRange,
+    val timeRange: Unit,
     val universalAqi: Boolean,
-    val languageCode: String
+    val languageCode: String,
+    val uaqiColor: Color
 )
