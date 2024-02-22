@@ -50,7 +50,6 @@ data class Location(
 data class AirQualityRequest(
     val location: LatLng,
     val extraComputations: List<ExtraComputation>,
-    val uaqiColorPalette: ColorPalette,
     val customLocalAqis: List<CustomLocalAqi>,
     val universalAqi: Boolean,
     val languageCode: String
@@ -71,7 +70,6 @@ data class HistoryLookupRequest(
     val pageToken: String,
     val location: LatLng,
     val extraComputations: List<ExtraComputation>,
-    val uaqiColorPalette: ColorPalette,
     val customLocalAqis: List<CustomLocalAqi>,
     val timeRange: TimeRange,
     val universalAqi: Boolean,
