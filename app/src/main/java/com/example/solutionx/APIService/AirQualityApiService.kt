@@ -4,7 +4,6 @@ import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
 import com.example.solutionx.model.HistoryLookupRequest
-import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
