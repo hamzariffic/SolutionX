@@ -1,6 +1,6 @@
 package com.example.solutionx.model
 
-import retrofit2.Callback
+import com.example.solutionx.UI.AirQualityResponse
 
 data class AirQualityResponse(
     val dateTime: String,
@@ -9,7 +9,18 @@ data class AirQualityResponse(
     val pollutants: List<Pollutant<Any?>>,
     val healthRecommendations: HealthRecommendations
 ) {
-    fun enqueue(callback: Callback<AirQualityResponse>) {
-        TODO("Not yet implemented")
+    val isSuccessful: Boolean
+        get() = indexes.isNotEmpty()
+
+    fun body() {
+        AirQualityResponse()
+    }
+
+    private fun errorBody() {
+        errorBody()
+    }
+
+    fun message() {
+        return errorBody()
     }
 }
