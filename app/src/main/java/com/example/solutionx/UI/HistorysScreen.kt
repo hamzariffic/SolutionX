@@ -37,14 +37,18 @@ fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
         languageCode = "en"
     )
 
-    // Function to fetch air quality history data
     fun fetchHistoryData(request: HistoryLookupRequest) {
         coroutineScope.launch {
-            historyData.value = historyViewModel.fetchAirQualityHistory(historyRequest = request)
+            val results = historyViewModel.fetchAirQualityHistory(historyRequest = request)
+            historyData.value = results
         }
     }
 
+
+
+
     // Call fetchHistoryData with appropriate request parameters
+    HistoryLookupRequest()
     fetchHistoryData(request)
     HistoricalDataResponse()
     // UI layout to display historical air quality data
@@ -60,6 +64,10 @@ fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
             }
         }
     }
+}
+
+fun HistoryLookupRequest() {
+    HistoryLookupRequest()
 }
 
 fun TimeRange() {
