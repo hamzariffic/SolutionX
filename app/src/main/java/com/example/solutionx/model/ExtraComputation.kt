@@ -6,6 +6,9 @@ sealed class ExtraComputation {
     data object LOCAL_AQI : ExtraComputation()
     data object POLLUTANT_ADDITIONAL_INFO : ExtraComputation()
     companion object {
+        val entries: List<ExtraComputation>
+            get() = listOf(HEALTH_RECOMMENDATIONS, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION, LOCAL_AQI, POLLUTANT_ADDITIONAL_INFO)
+
         fun values(): Array<ExtraComputation> {
             return arrayOf(
                 HEALTH_RECOMMENDATIONS,
