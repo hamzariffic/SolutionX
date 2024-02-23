@@ -1,7 +1,9 @@
 package com.example.solutionx.model
 
+import android.os.Parcel
+
 data class Color(
-    val red: Int,
+    val red: Parcel,
     val green: Int,
     val blue: Int,
     val alpha: Int?,
