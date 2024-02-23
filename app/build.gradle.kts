@@ -40,6 +40,8 @@ android {
     }
     buildFeatures {
         compose = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -53,7 +55,6 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.libraries.platform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -69,11 +70,18 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
 
+    // Import the BoM for the Firebase platform for versioning firebase libraries
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    //Firebase Authentication library
+    implementation("com.google.firebase:firebase-auth")
+    // Dependency for the Google Play services library and specify its version
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+
 //   Maps
-    implementation("com.google.auth:google-auth-library-oauth2-http:0.25.0")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.23.0")
     implementation("com.google.http-client:google-http-client-jackson2:1.44.1")
-    implementation("com.google.api-client:google-api-client:1.41.1")
-    implementation("com.google.api-client:google-api-client-gson:1.41.1")
+    implementation("com.google.api-client:google-api-client:2.3.0")
+    implementation("com.google.api-client:google-api-client-gson:2.3.0")
     implementation("com.google.apis:google-api-services-aqi:v1-rev20211201-1.31.0")
 
 // OkHttp (required by Retrofit)
@@ -85,6 +93,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose-android:1.1.0-alpha13")
     implementation("com.google.android.gms:play-services-location:21.1.0")
     implementation("androidx.room:room-common:2.6.1")
+    implementation("com.android.support:support-annotations:28.0.0")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
