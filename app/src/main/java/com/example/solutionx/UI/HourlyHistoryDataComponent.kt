@@ -19,7 +19,7 @@ fun PreviewHourlyHistoryDataComponent() {
     // Passing a sample HourlyInfo data for preview
     val sampleHourlyInfo = listOf(
         com.example.solutionx.model.HourlyInfo(
-            "2024-02-22T15:00:00Z", listOf(
+            "2024-02-24T15:00:00Z", listOf(
                 com.example.solutionx.model.Index(
                     "uaqi",
                     "Universal AQI",
