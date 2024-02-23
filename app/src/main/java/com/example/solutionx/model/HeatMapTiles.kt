@@ -23,6 +23,9 @@ data class HeatmapTileResponse(
     val data: ByteArray,
     val extensions: List<Any>
 ) {
+    val isSuccessful: Boolean
+        get() = contentType == "image/png"
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -39,5 +42,9 @@ data class HeatmapTileResponse(
         result = 31 * result + data.contentHashCode()
         result = 31 * result + extensions.hashCode()
         return result
+    }
+
+    fun body(): Any {
+        TODO("Not yet implemented")
     }
 }
