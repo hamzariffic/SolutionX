@@ -52,7 +52,7 @@ fun Home(navController: NavController) {
     //    Fetch hourly info
     val hourlyHistoryData = remember { mutableStateOf<List<HourlyInfo>?>(null) }
 
-    val userLocation = locationViewModel.userLocation.observeAsState()
+    val userLocation = locationViewModel.userLocation.observeAsState(initialValue = null)
 
     // Define state for expanded button
     val expanded = remember { mutableStateOf(
@@ -187,7 +187,7 @@ fun Home(navController: NavController) {
 }
 
 @Composable
-fun <T> LiveData<T>.observeAsState(): State<T> {
+fun <T> LiveData<T>.observeAsState(initialValue: T): State<T> {
     val state = remember { mutableStateOf(initialValue) }
     val observer = Observer<T> { value ->
         state.value = value
