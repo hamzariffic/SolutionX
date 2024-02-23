@@ -14,8 +14,8 @@ import com.google.android.gms.common.api.Result
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-private val ResponseBody.isSuccessful: Boolean
-    get() {}
+private val ResponseBody.isSuccessful: Unit
+    get() = Unit
 
 // Extension property to check if a Retrofit Response is successful
 val <T : Result?> Response<T>.isSuccess: Boolean
@@ -45,4 +45,8 @@ fun HeatmapComponent(type: String, zoom: Int, x: Int, y: Int) {
             contentDescription = null
         )
     }
+}
+
+private fun Any.getBytes(): ByteArray? {
+    return getBytes()
 }
