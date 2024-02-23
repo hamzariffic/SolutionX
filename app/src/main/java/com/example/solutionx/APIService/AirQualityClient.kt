@@ -1,5 +1,6 @@
 package com.example.solutionx.APIService
 
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,7 +19,7 @@ object AirQualityClient {
 //
     private val retrofitHistory = Retrofit.Builder()
         .baseUrl(BASE_URL_History)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConaverterFactory.create())
         .build()
 
 //  HeatMap Client
@@ -30,5 +31,13 @@ object AirQualityClient {
     val airQualityApiService: AirQualityApiService = retrofit.create(AirQualityApiService::class.java)
     val airQualityHistoryApiService: AirQualityApiService = retrofitHistory.create(AirQualityApiService::class.java)
     val airQualityHeatMapApiService: AirQualityApiService = retrofitHeatMaps.create(AirQualityApiService::class.java)
+}
+
+class GsonConaverterFactory {
+    companion object {
+        fun create(): Converter.Factory {
+            return GsonConverterFactory.create()
+        }
+    }
 }
 
