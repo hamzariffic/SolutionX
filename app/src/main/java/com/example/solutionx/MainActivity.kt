@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = colorScheme.background
                 ) {
-                    Hoclme(navController = rememberNavController())
+                    Home(navController = rememberNavController())
                 }
                 val navController = rememberNavController()
                 MyApp(navController)
