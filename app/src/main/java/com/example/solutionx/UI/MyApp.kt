@@ -1,6 +1,7 @@
 package com.example.solutionx.UI
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,7 +11,7 @@ fun MyApp(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "Home") {
         composable("Home") { Home(navController) }
         composable("airQualityDataComponent") {
-            AirQualityDataComponent()
+            AirQualityDataComponent(viewModel())
             HourlyHistoryDataComponent(hourlyHistoryResponse = listOf())
         }
         composable("HourlyHistoryDataComponent") {
@@ -23,8 +24,6 @@ fun MyApp(navController: NavHostController) {
             val y = backStackEntry.arguments?.getInt("y") ?: 0
             HeatmapComponent(type, zoom, x, y)
         }
-        composable("AirQualityDataComponent") {
-            AirQualityDataComponent()        }
         composable("HistoryScreen"){
             HistoryScreen()
         }
