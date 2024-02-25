@@ -1,10 +1,11 @@
+@file:Suppress("UNREACHABLE_CODE", "KotlinConstantConditions")
+
 package com.example.solutionx.UI
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -14,13 +15,11 @@ import com.example.solutionx.viewModels.AirQualityViewModel
 @Composable
 fun HealthRecommendationsScreen(
     navController: NavController,
-    healthRecommendations: HealthRecommendations,
-    airQualityResponse: Unit
+    healthRecommendations: HealthRecommendations
 ) {
     // Fetch the air quality data
     val regionCode = null
     val request = regionCode?.let { AirQualityRequest(it) }
-    val airQualityResponse by AirQualityViewModel.airQualityData.observeAsState()
 
     AirQualityViewModel.fetchAirQualityData(request!!)
     // Display the health recommendations
@@ -56,5 +55,8 @@ fun HealthRecommendationsScreenPreview() {
     )
     val airQualityResponse = AirQualityResponse()
 
-    HealthRecommendationsScreen(navController = navController, healthRecommendations = healthRecommendations, airQualityResponse = airQualityResponse)
+    HealthRecommendationsScreen(
+        navController = navController,
+        healthRecommendations = healthRecommendations
+    )
 }
