@@ -22,7 +22,7 @@ fun HeatmapScreen() {
         }
 
         if (showHeatmap) {
-            HeatmapComponent(type = MapType.US_AQI, zoom = 2, x = 0, y = 1)
+            HeatmapComponent(type = MapType.US_AQI.toString(), zoom = 2, x = 0, y = 1)
         }
     }
 }
