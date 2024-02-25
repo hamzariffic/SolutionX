@@ -8,7 +8,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HealthRecommendations
 import com.example.solutionx.viewModels.AirQualityViewModel
 
@@ -16,7 +15,7 @@ import com.example.solutionx.viewModels.AirQualityViewModel
 fun HealthRecommendationsScreen(
     navController: NavController,
     healthRecommendations: HealthRecommendations,
-    airQualityResponse: AirQualityResponse
+    airQualityResponse: Unit
 ) {
     // Fetch the air quality data
     val regionCode = null
@@ -55,7 +54,7 @@ fun HealthRecommendationsScreenPreview() {
         pregnantWomen = "Pregnant women recommendation",
         children = "Children recommendation"
     )
-    val airQualityResponse = AirQualityResponse(/* initialize with appropriate data */)
+    val airQualityResponse = AirQualityResponse()
 
     HealthRecommendationsScreen(navController = navController, healthRecommendations = healthRecommendations, airQualityResponse = airQualityResponse)
 }

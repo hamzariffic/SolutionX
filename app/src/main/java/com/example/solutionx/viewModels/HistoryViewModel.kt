@@ -5,8 +5,7 @@ import com.example.solutionx.APIService.AirQualityClient.airQualityHistoryApiSer
 import com.example.solutionx.APIService.HistoryLookupRequest
 
 class HistoryViewModel : ViewModel() {
-    suspend fun fetchAirQualityHistory(historyRequest: Unit): List<HistoryLookupRequest> {
+    fun fetchAirQualityHistory(historyRequest: HistoryLookupRequest): List<HistoryLookupRequest> {
         return airQualityHistoryApiService.getAirQualityHistory(historyRequest)
     }
-
 }
