@@ -74,7 +74,17 @@ data class HistoryLookupRequest(
     val timeRange: TimeRange,
     val universalAqi: Boolean,
     val languageCode: String
-)
+) { constructor() : this(
+        pageSize = 0,
+        pageToken = "",
+        location = com.google.android.gms.maps.model.LatLng(0.0, 0.0),
+        extraComputations = emptyList(),
+        customLocalAqis = emptyList(),
+        timeRange = TimeRange("", 0, Interval("", "")),
+        universalAqi = false,
+        languageCode = ""
+    )
+}
 
 data class HistoryLookupResponse(
     val hoursInfo: List<HourlyInfo>,
