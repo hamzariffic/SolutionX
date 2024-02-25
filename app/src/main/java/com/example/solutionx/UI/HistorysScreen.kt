@@ -1,12 +1,14 @@
 package com.example.solutionx.UI
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
 import com.example.solutionx.viewModels.HistoryViewModel
@@ -14,7 +16,9 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
 
 @Composable
-fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
+fun HistoryScreen(
+    navController: NavController,
+    historyViewModel: HistoryViewModel = viewModel()) {
     // Define state for history data and error
     val historyData = remember { mutableStateOf<HistoryResponse?>(null) }
     val error = remember { mutableStateOf<String?>(null) }
@@ -26,8 +30,7 @@ fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
     val request = HistoryLookupRequest(
         pageSize = 10,
         pageToken = "",
-        location = LatLng(37.7749, -122.4194),
-        // Other request parameters...
+        location = LatLng(37.7749, -122.4194)
     )
 
     // Function to fetch historical data
@@ -35,7 +38,7 @@ fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
         coroutineScope.launch {
             try {
                 val response = historyViewModel.fetchAirQualityHistory(request)
-                historyData.value = response
+                response!!.also { historyData.value = it }
             } catch (e: Exception) {
                 error.value = "Error fetching historical data: ${e.message}"
             }
@@ -57,9 +60,13 @@ fun HistoryScreen(historyViewModel: HistoryViewModel = viewModel()) {
 
             // Display historical air quality data
             historyData.value?.let { historyResponse ->
-                // Display data here using Text or other composable functions
-                // Example:
+                // Display data  using Text & other composable functions
                 Text("Data: $historyResponse")
+            }
+            OutlinedButton(
+                onClick = { navController.navigate("extraComputations") }
+            ) {
+                Text("View Extra Computations")
             }
         }
     }
