@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.solutionx.model.HealthRecommendations
 
 @Composable
 fun MyApp(navController: NavHostController) {
@@ -25,7 +26,13 @@ fun MyApp(navController: NavHostController) {
             HeatmapComponent(type, zoom, x, y)
         }
         composable("HistoryScreen"){
-            HistoryScreen()
+            HistoryScreen(navController)
+        }
+        composable("HealthRecommendationsScreen"){
+            HealthRecommendationsScreen(navController, healthRecommendations = HealthRecommendations(), airQualityResponse = AirQualityResponse())
+        }
+        composable("HeatmapScreen"){
+            HeatmapScreen()
         }
     }
 }

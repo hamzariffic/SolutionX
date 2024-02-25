@@ -7,8 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
 import com.example.solutionx.viewModels.HistoryViewModel
@@ -77,9 +79,9 @@ fun HistoryLookupRequest(pageSize: Int, pageToken: String, location: LatLng) {
     HistoryLookupRequest(10, "", LatLng(37.7749, -122.4194))
 }
 
-fun TimeRange() {
-    TimeRange()
-}
-fun HistoricalDataResponse() {
-    HistoricalDataResponse()
+@Preview(showBackground = true)
+@Composable
+fun HistoryScreenPreview() {
+    val navController = rememberNavController()
+    HistoryScreen(navController)
 }
