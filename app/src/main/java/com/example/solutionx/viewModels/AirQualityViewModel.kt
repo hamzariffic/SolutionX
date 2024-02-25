@@ -9,15 +9,17 @@ import com.example.solutionx.model.AirQualityResponse
 
 class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewModel() {
 
+    val hourlyHistoryData: Any?
+        get() = null
+
     private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
     val airQualityData: LiveData<AirQualityResponse> = _airQualityData
 
     private val _errorLiveData by lazy { MutableLiveData<String>() }
-    val errorLiveData: LiveData<String> = _errorLiveData
 
     private var airQualityRequest: AirQualityRequest? = null
 
-    suspend fun fetchAirQualityData(request: AirQualityRequest) {
+    suspend fun fetchAirQualityData(request: Unit) {
         airQualityRequest?.let { request ->
             try {
                 val response = apiService.currentConditions(request)
@@ -37,6 +39,8 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
     }
 
     companion object {
+        private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
+        val airQualityData: LiveData<AirQualityResponse> = _airQualityData
         fun fetchAirQualityData(request: Unit) {
             fetchAirQualityData(request=Unit)
         }
