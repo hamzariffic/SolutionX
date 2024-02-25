@@ -10,7 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.asImageBitmap
 import com.example.solutionx.APIService.AirQualityClient.airQualityHeatMapApiService
-import com.example.solutionx.model.MapType
 import com.google.android.gms.common.api.Result
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -25,7 +24,7 @@ val <T : Result?> Response<T>.isSuccess: Boolean
 // Extension function to extract bytes from a ResponseBody
 fun ResponseBody?.getBytes(): ByteArray? = this?.bytes()
 @Composable
-fun HeatmapComponent(type: MapType, zoom: Int, x: Int, y: Int) {
+fun HeatmapComponent(type: String, zoom: Int, x: Int, y: Int) {
     val heatmapTile = remember { mutableStateOf<Bitmap?>(null) }
 
 
