@@ -4,14 +4,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HealthRecommendations
 import com.example.solutionx.viewModels.AirQualityViewModel
 
 @Composable
 fun HealthRecommendationsScreen(
     navController: NavController,
-    healthRecommendations: HealthRecommendations
+    healthRecommendations: HealthRecommendations,
+    airQualityResponse: AirQualityResponse
 ) {
     // Fetch the air quality data
     val regionCode = null
@@ -35,4 +40,22 @@ fun HealthRecommendationsScreen(
             Text("Back to Current Conditions")
         }
     }
+}
+
+@Preview
+@Composable
+fun HealthRecommendationsScreenPreview() {
+    val navController = rememberNavController()
+    val healthRecommendations = HealthRecommendations(
+        generalPopulation = "General population recommendation",
+        elderly = "Elderly recommendation",
+        lungDiseasePopulation = "Lung disease population recommendation",
+        heartDiseasePopulation = "Heart disease population recommendation",
+        athletes = "Athletes recommendation",
+        pregnantWomen = "Pregnant women recommendation",
+        children = "Children recommendation"
+    )
+    val airQualityResponse = AirQualityResponse(/* initialize with appropriate data */)
+
+    HealthRecommendationsScreen(navController = navController, healthRecommendations = healthRecommendations, airQualityResponse = airQualityResponse)
 }
