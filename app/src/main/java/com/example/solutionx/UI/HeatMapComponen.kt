@@ -27,11 +27,10 @@ fun HeatmapComponent(
     LaunchedEffect(Unit) {
         val response = getHeatmapTileResponse(type, zoom, x, y, airQualityApiService)
         if (response != null) {
+
             val responseBody = response.getBytes()
-            if (responseBody != null) {
-                BitmapFactory.decodeByteArray(responseBody, 0, responseBody.size)
-                    .also { heatmapTile.value = it }
-            }
+            val also = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.size)
+                .also { heatmapTile.value = it }
         }
     }
 
@@ -54,7 +53,6 @@ private suspend fun getHeatmapTileResponse(
         try {
             airQualityApiService.getHeatmapTile(type, zoom, x, y)
         } catch (e: Exception) {
-            // Handle exception
             null
         }
     }
@@ -63,5 +61,5 @@ private suspend fun getHeatmapTileResponse(
 @Preview(showBackground = true)
 @Composable
 fun HeatmapComponentPreview() {
-    HeatmapComponent("type", 1, 2, 3)
+    HeatmapComponent("type", 1, 2, 3, AirQualityApiService.create())
 }
