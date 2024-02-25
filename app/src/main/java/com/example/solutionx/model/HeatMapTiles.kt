@@ -44,7 +44,7 @@ data class HeatmapTileResponse(
         return result
     }
 
-    fun body(): Any {
-        TODO("Not yet implemented")
+    fun getBytes() {
+        getBytes()
     }
 }
