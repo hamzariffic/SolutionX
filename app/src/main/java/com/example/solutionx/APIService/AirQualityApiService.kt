@@ -14,12 +14,12 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface AirQualityApiService {
-    @POST("currentConditions:lookup")
+    @POST("currentConditions:lookup=API_KEY")
     suspend fun currentConditions(
         @Body airQualityRequest: AirQualityRequest
     ): AirQualityResponse
 
-    @POST("history:lookup")
+    @POST("history:lookup=API_KEY")
     suspend fun getAirQualityHistory(
         @Body historyLookupRequest: HistoryLookupRequest
     ): List<HourlyInfo>
@@ -32,11 +32,8 @@ interface AirQualityApiService {
         @Path("y") y: Int
     ): HeatmapTileResponse
 
-
-//    suspend fun getHourlyAirQualityHistory(historyRequest: HistoryRequest): List<HourlyInfo>
-
     companion object {
-        private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key"
+        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
 
         fun create(): AirQualityApiService {
             val retrofit = Retrofit.Builder()
