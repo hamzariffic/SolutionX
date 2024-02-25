@@ -24,5 +24,10 @@ The UI contains mostly buttons which are supposed to lead users to specific dest
 Model-view-view-Model
 
 
+**Contributions**
+- The project is still under development and only team members for this project are allowed to contribute for now..
+- 
+
+
 
 
