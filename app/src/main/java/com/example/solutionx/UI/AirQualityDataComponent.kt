@@ -19,6 +19,7 @@ fun AirQualityDataComponent(viewModel: AirQualityViewModel) {
     val regionCode = null
     val request = regionCode?.let { AirQualityRequest(it) }
     val airQualityResponse by viewModel.airQualityData.observeAsState()
+
 //Had to wrap it here since it's a suspend fun and I can't, presumably, create a coroutine composable
     LaunchedEffect(Unit) {
         viewModel.fetchAirQualityData(request!!)
