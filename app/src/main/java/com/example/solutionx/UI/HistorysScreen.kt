@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.solutionx.model.HistoryLookupRequest
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
 import com.example.solutionx.viewModels.HistoryViewModel
@@ -36,11 +37,11 @@ fun HistoryScreen(
     )
 
     // Function to fetch historical data
-    fun fetchHistoryData(request: Unit) {
+    fun fetchHistoryData(request: HistoryLookupRequest) {
         coroutineScope.launch {
             try {
                 val response = historyViewModel.fetchAirQualityHistory(request)
-                response!!.also { historyData.value = it }
+                response.also { historyData.value = it }
             } catch (e: Exception) {
                 error.value = "Error fetching historical data: ${e.message}"
             }
@@ -74,10 +75,6 @@ fun HistoryScreen(
     }
 }
 
-
-fun HistoryLookupRequest(pageSize: Int, pageToken: String, location: LatLng) {
-    HistoryLookupRequest(10, "", LatLng(37.7749, -122.4194))
-}
 
 @Preview(showBackground = true)
 @Composable
