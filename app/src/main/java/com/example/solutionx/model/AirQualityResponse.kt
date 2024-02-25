@@ -2,6 +2,7 @@ package com.example.solutionx.model
 
 import com.example.solutionx.UI.AirQualityResponse
 
+//Defining the data model for the air quality response with some properties
 data class AirQualityResponse(
     val dateTime: String,
     val regionCode: String,
