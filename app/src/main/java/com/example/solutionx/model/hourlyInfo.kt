@@ -2,10 +2,11 @@ package com.example.solutionx.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.util.ArrayList
 
 data class HourlyInfo(
     val dateTime: String?,
-    val indexes: List<Index>
+    val indexes: ArrayList<Index>?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
