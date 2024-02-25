@@ -10,14 +10,14 @@ import com.google.type.LatLng
 data class HistoryRequest(
     val hours: Int,
     val pageSize: Int,
-    val pageToken: String?,
+    val pageToken: String? = null,
     val location: Location
 )
 
 data class HistoricalDataResponse(
     val hoursInfo: List<HourlyInfo>,
     val regionCode: String,
-    val nextPageToken: String?
+    val nextPageToken: String? = null
 )
 
 data class HourlyInfo(
@@ -31,7 +31,7 @@ data class Index(
     val aqi: Int,
     val aqiDisplay: String,
     val color: Color,
-    val category: String,
+    val category: PollutantCategory,
     val dominantPollutant: String
 )
 
@@ -39,7 +39,7 @@ data class Color(
     val red: Int,
     val green: Int,
     val blue: Int,
-    val alpha: Int?
+    val alpha: Int? = null
 )
 
 data class Location(
@@ -63,28 +63,16 @@ data class AirQualityResponse(
     val healthRecommendations: HealthRecommendations
 )
 
-
-//This is a data class for history. Should be moved elsewhere
 data class HistoryLookupRequest(
-    val pageSize: Int,
-    val pageToken: String,
-    val location: LatLng,
-    val extraComputations: List<ExtraComputation>,
-    val customLocalAqis: List<CustomLocalAqi>,
-    val timeRange: TimeRange,
-    val universalAqi: Boolean,
-    val languageCode: String
-) { constructor() : this(
-        pageSize = 0,
-        pageToken = "",
-        location = com.google.android.gms.maps.model.LatLng(0.0, 0.0),
-        extraComputations = emptyList(),
-        customLocalAqis = emptyList(),
-        timeRange = TimeRange("", 0, Interval("", "")),
-        universalAqi = false,
-        languageCode = ""
-    )
-}
+    val pageSize: Int = 0,
+    val pageToken: String = "",
+    val location: com.google.android.gms.maps.model.LatLng = com.google.android.gms.maps.model.LatLng(0.0, 0.0),
+    val extraComputations: List<ExtraComputation> = emptyList(),
+    val customLocalAqis: List<CustomLocalAqi> = emptyList(),
+    val timeRange: TimeRange = TimeRange("", 0, Interval("", "")),
+    val universalAqi: Boolean = false,
+    val languageCode: String = ""
+)
 
 data class HistoryLookupResponse(
     val hoursInfo: List<HourlyInfo>,
@@ -102,3 +90,9 @@ data class Interval(
     val startTime: String,
     val endTime: String
 )
+
+enum class PollutantCategory {
+    CATEGORY_1,
+    CATEGORY_2,
+    CATEGORY_3
+}
