@@ -5,7 +5,7 @@ package com.example.solutionx.APIService
 import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
-import com.example.solutionx.model.HistoryLookupRequest
+import com.example.solutionx.model.HistoryResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -21,8 +21,8 @@ interface AirQualityApiService {
 
     @POST("history:lookup=API_KEY")
     suspend fun getAirQualityHistory(
-        @Body historyLookupRequest: HistoryLookupRequest
-    ): List<HourlyInfo>
+        @Body historyLookupRequest: Unit
+    ): List<HistoryLookupRequest>
 
     @GET("heatmapTiles/{type}/{zoom}/{x}/{y}")
     suspend fun getHeatmapTile(
