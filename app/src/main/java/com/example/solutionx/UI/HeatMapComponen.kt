@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.APIService.AirQualityApiService
 import com.example.solutionx.model.HeatmapTileResponse
 import kotlinx.coroutines.Dispatchers
@@ -57,4 +58,10 @@ private suspend fun getHeatmapTileResponse(
             null
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HeatmapComponentPreview() {
+    HeatmapComponent("type", 1, 2, 3)
 }
