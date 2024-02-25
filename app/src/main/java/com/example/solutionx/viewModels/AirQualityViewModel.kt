@@ -17,7 +17,7 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
 
     private var airQualityRequest: AirQualityRequest? = null
 
-    suspend fun fetchAirQualityData() {
+    suspend fun fetchAirQualityData(request: AirQualityRequest) {
         airQualityRequest?.let { request ->
             try {
                 val response = apiService.currentConditions(request)
@@ -33,6 +33,12 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
                 _errorLiveData.value = "Network request failed: ${e.message}"
                 _airQualityData.value = null // Clear previous data on error
             }
+        }
+    }
+
+    companion object {
+        fun fetchAirQualityData(request: Unit) {
+            fetchAirQualityData(request=Unit)
         }
     }
 }
