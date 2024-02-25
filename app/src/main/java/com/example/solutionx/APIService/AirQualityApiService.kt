@@ -17,7 +17,14 @@ interface AirQualityApiService {
         @Body airQualityRequest: String
     ): AirQualityResponse
 
-    fun getAirQualityHistory(historyRequest: HistoryLookupRequest): List<HistoryLookupRequest>
+    fun getAirQualityHistory(
+        historyRequest: History.Companion,
+        HistoricalDataResponse: Any?
+    ): List<HistoryLookupRequest>
+    fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
+    fun getAirQualityHistory(historyRequest: History.Companion) {
+        getAirQualityHistory(historyRequest, null)
+    }
 
     companion object {
         private const val BASE_URL_History = "https://airquality.googleapis.com/v1/"
