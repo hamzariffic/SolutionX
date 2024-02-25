@@ -10,7 +10,7 @@ data class Index(
     val displayName: String?,
     val aqi: Int,
     val aqiDisplay: String?,
-    val color: Color?,
+    val color: com.example.solutionx.model.Color,
     val category: String?,
     val dominantPollutant: String?
 ) : Parcelable {
