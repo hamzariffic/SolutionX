@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.viewModels.AirQualityViewModel
 
 @Composable
@@ -22,7 +23,7 @@ fun AirQualityDataComponent(viewModel: AirQualityViewModel) {
 
 //Had to wrap it here since it's a suspend fun and I can't, presumably, create a coroutine composable
     LaunchedEffect(Unit) {
-        viewModel.fetchAirQualityData(request!!)
+       request?.let { viewModel.fetchAirQualityData(request)}
     }
     airQualityResponse?.let { response ->
         Text(text = response.toString())
@@ -39,14 +40,6 @@ internal fun <T> LiveData<T>.observeAsState(): MutableState<T?> {
     val state = remember { mutableStateOf<T?>(null) }
     observeForever { state.value = it }
     return state
-}
-
-fun AirQualityRequest(regionCode: Any) {
-    AirQualityRequest(regionCode = regionCode)
-}
-
-fun AirQualityResponse() {
-    AirQualityResponse()
 }
 
 @Preview(showBackground = true)
