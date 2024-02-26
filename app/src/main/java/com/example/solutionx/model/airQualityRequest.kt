@@ -9,8 +9,12 @@ data class AirQualityRequest(
     val universalAqi: Boolean,
     val languageCode: String
 ) {
+    constructor(regionCode: Any) : this(
+        location = regionCode as LatLng,
+        extraComputations = emptyList(),
+        customLocalAqis = emptyList(),
+        universalAqi = false,
+        languageCode = "en"
+    )
 
-    fun body() {
-        AirQualityRequest(location, extraComputations, customLocalAqis, universalAqi, languageCode)
-    }
 }
