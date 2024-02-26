@@ -42,7 +42,7 @@ fun HistoryScreen(
             try {
                 val response = historyViewModel.fetchAirQualityHistory(request)
 
-                response.also { responseData -> historyData.value = responseData }
+                response.also { historyData.value = it }
             } catch (e: Exception) {
                 error.value = "Error fetching historical data: ${e.message}"
             }
