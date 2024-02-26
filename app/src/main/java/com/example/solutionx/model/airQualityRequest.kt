@@ -8,4 +8,9 @@ data class AirQualityRequest(
     val customLocalAqis: List<CustomLocalAqi>,
     val universalAqi: Boolean,
     val languageCode: String
-)
+) {
+
+    fun body() {
+        AirQualityRequest(location, extraComputations, customLocalAqis, universalAqi, languageCode)
+    }
+}
