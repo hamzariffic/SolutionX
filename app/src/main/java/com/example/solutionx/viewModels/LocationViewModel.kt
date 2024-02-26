@@ -21,4 +21,7 @@ class LocationViewModel(context: Context) : ViewModel() {
             _userLocation.value = Location(it.latitude, it.longitude)
         }
     }
+
+    fun getCurrentLocation() {
+        fetchUserLocation()    }
 }
