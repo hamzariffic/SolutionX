@@ -10,7 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.APIService.AirQualityApiService
-import com.example.solutionx.model.HeatmapTileResponse
+import com.example.solutionx.APIService.HeatmapTile
+//import com.example.solutionx.model.HeatmapTileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -33,9 +34,11 @@ fun HeatmapComponent(
     LaunchedEffect(Unit) {
         val response = getHeatmapTileResponse(type, zoom, x, y, airQualityApiService)
         if (response != null) {
-            val responseBody = response.getBytes()
+            val responseBody = response.getHeatmapTile()
 
-            BitmapFactory.decodeByteArray(responseBody, 0, responseBody.size)
+            val also = BitmapFactory.decodeByteArray(/* data = */ responseBody, /* offset = */
+                0, /* length = */
+                responseBody.size)
                 .also { heatmapTile.value = it }
         }
     }
@@ -54,7 +57,7 @@ private suspend fun getHeatmapTileResponse(
     x: Int,
     y: Int,
     airQualityApiService: AirQualityApiService
-): HeatmapTileResponse? {
+): HeatmapTile? {
     return withContext(Dispatchers.IO) {
         try {
             airQualityApiService.getHeatmapTile(type, zoom, x, y)
