@@ -66,6 +66,10 @@ interface HeatmapTile {
         @Path("y") y: Int
     ): HeatmapTileResponse
 
+    fun getHeatmapTile() {
+        getHeatmapTile()
+    }
+
     companion object {
         private const val BASE_URL = "https://airquality.googleapis.com/v1/"
 
