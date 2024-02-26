@@ -41,7 +41,8 @@ fun HistoryScreen(
         coroutineScope.launch {
             try {
                 val response = historyViewModel.fetchAirQualityHistory(request)
-                response.also { historyData.value = it }
+
+                response.also { responseData -> historyData.value = responseData }
             } catch (e: Exception) {
                 error.value = "Error fetching historical data: ${e.message}"
             }

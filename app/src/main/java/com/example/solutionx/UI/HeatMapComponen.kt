@@ -33,9 +33,9 @@ fun HeatmapComponent(
     LaunchedEffect(Unit) {
         val response = getHeatmapTileResponse(type, zoom, x, y, airQualityApiService)
         if (response != null) {
-
             val responseBody = response.getBytes()
-            val also = BitmapFactory.decodeByteArray(responseBody, 0, responseBody.size)
+
+            BitmapFactory.decodeByteArray(responseBody, 0, responseBody.size)
                 .also { heatmapTile.value = it }
         }
     }
