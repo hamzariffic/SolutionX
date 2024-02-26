@@ -21,7 +21,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+//        Properties properties = new Properties()
+//        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//
+//        buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
     }
+
 
     buildTypes {
         release {
@@ -34,12 +39,13 @@ android {
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
         //noinspection DataBindingWithoutKapt
         dataBinding = true
