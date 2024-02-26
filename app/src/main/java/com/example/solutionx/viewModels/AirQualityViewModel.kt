@@ -1,3 +1,5 @@
+@file:Suppress("CAST_NEVER_SUCCEEDS")
+
 package com.example.solutionx.viewModels
 
 import androidx.lifecycle.LiveData
@@ -8,7 +10,10 @@ import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 
 @Suppress("NAME_SHADOWING")
-class AirQualityViewModel(private val apiService: AirQualityApiService, private val locationViewModel: LocationViewModel
+class AirQualityViewModel(
+    private val apiService: AirQualityApiService,
+    private val locationViewModel: LocationViewModel,
+    val companion: Unit
 ) : ViewModel() {
 
 
@@ -22,31 +27,47 @@ class AirQualityViewModel(private val apiService: AirQualityApiService, private 
 
     private var airQualityRequest: AirQualityRequest? = null
 
-    suspend fun fetchAirQualityData(request: Unit) {
+    private fun AirQualityRequest(location: Unit): AirQualityRequest {
+        airQualityRequest = AirQualityRequest(location = location)
+        return airQualityRequest!!
+    }
+
+    suspend fun fetchAirQualityData(request: AirQualityRequest) {
         val currentLocation = locationViewModel.getCurrentLocation()
 
 
-        currentLocation?.let { location ->
+        currentLocation.let { location ->
             val request = AirQualityRequest(location = location)
-        airQualityRequest?.let { request ->
-            try {
-                val response = apiService.currentConditions(request)
-                if (response.isSuccessful) {
-                    response.body().also { _airQualityData.value = it }
-                } else {
-                    _errorLiveData.value = "Could not get Air Quality Conditions: ${response.message()}"
+            airQualityRequest?.let { request ->
+                try {
+                    val response = apiService.currentConditions(request)
+                    if (response.isSuccessful) {
+                        response.body().also {
+                            it.also { _airQualityData.value =
+                                AirQualityResponse() as AirQualityResponse?
+                            }
+                        }
+                    } else {
+                        _errorLiveData.value = "Could not get Air Quality Conditions: ${response.message()}"
+                        _airQualityData.value = null // Clear previous data on error
+                    }
+                } catch (e: Exception) {
+                    _errorLiveData.value = "Network request failed: ${e.message}"
                     _airQualityData.value = null // Clear previous data on error
                 }
-            } catch (e: Exception) {
-                _errorLiveData.value = "Network request failed: ${e.message}"
-                _airQualityData.value = null // Clear previous data on error
+            }
+        }
+
+    var value1 = object {
+            private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
+            fun fetchAirQualityData(request: AirQualityResponse?) {
             }
         }
     }
 
     companion object {
-        private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
         fun fetchAirQualityData(request: Unit) {
+
         }
     }
 }
