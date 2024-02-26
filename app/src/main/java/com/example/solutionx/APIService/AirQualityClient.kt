@@ -5,10 +5,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object AirQualityClient {
-    private const val API_KEY = "API_KEY"
-    private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=API_KEY"
-    private const val BASE_URL_History = "https://airquality.googleapis.com/v1/history:lookup?key=API_KEY"
-    private const val BASE_URL_HeatMaps = "https://airquality.googleapis.com/v1/lookup?key=API_KEY"
+    private const val API_KEY = "AIzaSyCR-4L-TbWGyM0agrwBsTLWN1HYa7T_2EY"
+
+    private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=$API_KEY"
+    private const val BASE_URL_History = "https://airquality.googleapis.com/v1/history:lookup?key=$API_KEY"
+    private const val BASE_URL_HeatMaps = "https://airquality.googleapis.com/v1/lookup?key=$API_KEY"
 
 
 //  AirQuality Client
