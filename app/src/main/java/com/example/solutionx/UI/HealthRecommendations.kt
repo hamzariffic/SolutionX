@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.solutionx.model.AirQualityRequest
+import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HealthRecommendations
 import com.example.solutionx.viewModels.AirQualityViewModel
 
@@ -21,7 +23,7 @@ fun HealthRecommendationsScreen(
     val regionCode = null
     val request = regionCode?.let { AirQualityRequest(it) }
 
-    AirQualityViewModel.fetchAirQualityData(request!!)
+    AirQualityViewModel.fetchAirQualityData(request)
     // Display the health recommendations
     Column {
         Text("Health Recommendations")
