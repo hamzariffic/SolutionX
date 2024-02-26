@@ -44,7 +44,7 @@ data class HeatmapTileResponse(
         return result
     }
 
-    fun getBytes() {
-        getBytes()
+    private fun getBytes(): ByteArray {
+        return data
     }
 }
