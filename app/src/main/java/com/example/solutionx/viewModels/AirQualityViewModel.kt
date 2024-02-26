@@ -7,7 +7,10 @@ import com.example.solutionx.APIService.AirQualityApiService
 import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 
-class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewModel() {
+@Suppress("NAME_SHADOWING")
+class AirQualityViewModel(private val apiService: AirQualityApiService, private val locationViewModel: LocationViewModel
+) : ViewModel() {
+
 
     val hourlyHistoryData: Any?
         get() = null
@@ -20,13 +23,16 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
     private var airQualityRequest: AirQualityRequest? = null
 
     suspend fun fetchAirQualityData(request: Unit) {
+        val currentLocation = locationViewModel.getCurrentLocation()
+
+
+        currentLocation?.let { location ->
+            val request = AirQualityRequest(location = location)
         airQualityRequest?.let { request ->
             try {
                 val response = apiService.currentConditions(request)
                 if (response.isSuccessful) {
-                    response.body()?.also {
-                        _airQualityData.value = it
-                    }
+                    response.body().also { _airQualityData.value = it }
                 } else {
                     _errorLiveData.value = "Could not get Air Quality Conditions: ${response.message()}"
                     _airQualityData.value = null // Clear previous data on error
@@ -40,9 +46,7 @@ class AirQualityViewModel(private val apiService: AirQualityApiService) : ViewMo
 
     companion object {
         private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
-        val airQualityData: LiveData<AirQualityResponse> = _airQualityData
         fun fetchAirQualityData(request: Unit) {
-            fetchAirQualityData(request=Unit)
         }
     }
 }
