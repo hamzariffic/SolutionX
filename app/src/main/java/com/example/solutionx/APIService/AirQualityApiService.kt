@@ -20,7 +20,7 @@ interface AirQualityApiService {
 
     fun getAirQualityHistory(
         historyRequest: History.Companion,
-        HistoricalDataResponse: Any?
+        HistoricalDataReesponse: Any?
     ): List<HistoryLookupRequest>
     fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
     fun getAirQualityHistory(historyRequest: History.Companion) {
