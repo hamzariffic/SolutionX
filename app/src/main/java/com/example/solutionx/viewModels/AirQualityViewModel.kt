@@ -66,7 +66,7 @@ class AirQualityViewModel(
     }
 
     companion object {
-        fun fetchAirQualityData(request: Unit) {
+        fun fetchAirQualityData(request: AirQualityRequest?) {
 
         }
     }
