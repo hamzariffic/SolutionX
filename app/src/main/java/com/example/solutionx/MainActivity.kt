@@ -1,14 +1,11 @@
-package com.example.solutionx.ui
+package com.example.solutionx
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme.colorScheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.solutionx.UI.Home
 import com.example.solutionx.UI.MyApp
 import com.example.solutionx.ui.theme.SolutionXTheme
 
@@ -16,16 +13,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             SolutionXTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = colorScheme.background
-                ) {
-                    Home(navController = rememberNavController())
-                }
-                val navController = rememberNavController()
                 MyApp(navController)
             }
         }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun DefaultPreview() {
+    SolutionXTheme {
+        // Define a preview composable if needed
     }
 }
