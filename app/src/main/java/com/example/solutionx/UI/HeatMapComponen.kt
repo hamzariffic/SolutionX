@@ -14,6 +14,12 @@ import com.example.solutionx.model.HeatmapTileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+private val Any.size: Int
+    get() {
+        size
+        return 0
+    }
+
 @Composable
 fun HeatmapComponent(
     type: String,
