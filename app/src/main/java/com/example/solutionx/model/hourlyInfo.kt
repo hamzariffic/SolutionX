@@ -9,7 +9,7 @@ data class HourlyInfo(
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.createTypedArrayList(Index)
+        parcel.createTypedArrayList(Index) ?: emptyList()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
