@@ -19,7 +19,7 @@ data class Index(
         parcel.readString(),
         parcel.readInt(),
         parcel.readString(),
-        Color(0),
+//        Color(0fff123),
         parcel.readString(),
         parcel.readString()
     )
