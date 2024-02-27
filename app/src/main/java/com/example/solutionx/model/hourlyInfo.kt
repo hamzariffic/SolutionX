@@ -10,8 +10,7 @@ data class HourlyInfo(
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.createTypedArrayList(Index)
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(dateTime)
