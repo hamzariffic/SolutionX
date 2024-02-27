@@ -2,7 +2,6 @@ package com.example.solutionx.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.compose.ui.graphics.Color
 
 // Contains air quality indices
 data class Index(
@@ -10,7 +9,7 @@ data class Index(
     val displayName: String?,
     val aqi: Int,
     val aqiDisplay: String?,
-    val color: com.example.solutionx.model.Color,
+//    val color: com.example.solutionx.model.Color,
     val category: String?,
     val dominantPollutant: String?
 ) : Parcelable {
@@ -19,7 +18,7 @@ data class Index(
         parcel.readString(),
         parcel.readInt(),
         parcel.readString(),
-//        Color(0fff123),
+//        Color("", 0, 0, 0),
         parcel.readString(),
         parcel.readString()
     )
