@@ -22,7 +22,7 @@ fun AirQualityDataComponent(viewModel: AirQualityViewModel) {
     val airQualityResponse by viewModel.airQualityData.observeAsState()
 
 //Had to wrap it here since it's a suspend fun and I can't, presumably, create a coroutine composable
-    LaunchedEffect(Unit) {
+    LaunchedEffect(ByteArray(0)) {
        request?.let { viewModel.fetchAirQualityData(request)}
     }
     airQualityResponse?.let { response ->
