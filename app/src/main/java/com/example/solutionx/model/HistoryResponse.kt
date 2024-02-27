@@ -5,10 +5,10 @@ import android.os.Parcel
 data class HistoryResponse(
     val hoursInfo: List<HourlyInfo>,
     val regionCode: String,
-    val nextPageToken: String? = null,
+    val nextPageToken: String?,
     val dateTime: String,
     val indexes: ArrayList<Index>?,
-    val code: Parcel,
+    val code: Parcel?,
     val displayName: String?,
     val aqi: Int,
     val aqiDisplay: String?,
