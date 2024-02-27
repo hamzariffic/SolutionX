@@ -1,16 +1,16 @@
-@file:Suppress("PackageName")
-
 package com.example.solutionx.APIService
 
 import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
+import com.example.solutionx.model.HistoryResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+
 
 interface AirQualityApiService {
     @POST("currentConditions:lookup=API_KEY")
@@ -19,19 +19,19 @@ interface AirQualityApiService {
     ): AirQualityResponse
 
     fun Any?.getAirQualityHistory(
-        historyRequest: History.Companion
-    ): List<HistoryLookupRequest>
+        historyRequest: com.example.solutionx.model.HistoryLookupRequest
+    ): HistoryResponse
     fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
-    fun getAirQualityHistory(historyRequest: History.Companion) {
+    fun getAirQualityHistory(historyRequest: com.example.solutionx.model.HistoryLookupRequest) {
         null.getAirQualityHistory(historyRequest)
     }
 
     companion object {
-        private const val BASE_URL_History = "https://airquality.googleapis.com/v1/"
+        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
 
         fun create(): AirQualityApiService {
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL_History)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit.create(AirQualityApiService::class.java)
@@ -45,11 +45,10 @@ interface History{
     ): List<HistoryLookupRequest>
 
     companion object {
-        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
-
+        private const val BASE_URL_History = "https://airquality.googleapis.com/v1/"
         fun create(): AirQualityApiService {
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL_History)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit.create(AirQualityApiService::class.java)
