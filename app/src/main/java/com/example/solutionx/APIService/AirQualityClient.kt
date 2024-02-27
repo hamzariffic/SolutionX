@@ -37,5 +37,5 @@ object AirQualityClient {
 
     val airQualityHistoryApiService: AirQualityApiService = retrofitHistory.create(AirQualityApiService::class.java)
 
-    val airQualityApiService: AirQualityApiService = retrofit.create(AirQualityApiService::class.java)}
+}
 
