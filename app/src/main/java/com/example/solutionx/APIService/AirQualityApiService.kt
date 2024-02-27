@@ -18,13 +18,12 @@ interface AirQualityApiService {
         @Body airQualityRequest: AirQualityRequest
     ): AirQualityResponse
 
-    fun getAirQualityHistory(
-        historyRequest: History.Companion,
-        HistoricalDataReesponse: Any?
+    fun Any?.getAirQualityHistory(
+        historyRequest: History.Companion
     ): List<HistoryLookupRequest>
     fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
     fun getAirQualityHistory(historyRequest: History.Companion) {
-        getAirQualityHistory(historyRequest, null)
+        null.getAirQualityHistory(historyRequest)
     }
 
     companion object {
@@ -58,6 +57,8 @@ interface History{
     }}
 
 interface HeatmapTile {
+    val data: Any
+
     @GET("heatmapTiles/{type}/{zoom}/{x}/{y}")
     suspend fun getHeatmapTile(
         @Path("type") type: String,
