@@ -8,7 +8,6 @@ data class HeatmapTileRequest(
 )
 
 enum class MapType {
-    UAQI_RED_GREEN,
     UAQI_INDIGO_PERSIAN,
     PM25_INDIGO_PERSIAN,
     GBR_DEFRA,
@@ -44,7 +43,4 @@ data class HeatmapTileResponse(
         return result
     }
 
-    private fun getBytes(): ByteArray {
-        return data
-    }
 }
