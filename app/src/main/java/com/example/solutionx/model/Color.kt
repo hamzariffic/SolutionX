@@ -17,8 +17,7 @@ data class Color(
         parcel.readInt(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.createStringArrayList()!!
-    ) {
-    }
+    )
 
     constructor() : this(0, 0, 0, 0)
 
