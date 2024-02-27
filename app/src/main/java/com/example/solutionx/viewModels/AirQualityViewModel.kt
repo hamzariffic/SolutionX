@@ -1,5 +1,3 @@
-@file:Suppress("CAST_NEVER_SUCCEEDS")
-
 package com.example.solutionx.viewModels
 
 import androidx.lifecycle.LiveData
@@ -12,13 +10,9 @@ import com.example.solutionx.model.AirQualityResponse
 @Suppress("NAME_SHADOWING")
 class AirQualityViewModel(
     private val apiService: AirQualityApiService,
-    private val locationViewModel: LocationViewModel,
-    val companion: Unit
+    private val locationViewModel: LocationViewModel
 ) : ViewModel() {
 
-
-    val hourlyHistoryData: Any?
-        get() = null
 
     private val _airQualityData by lazy { MutableLiveData<AirQualityResponse>() }
     val airQualityData: LiveData<AirQualityResponse> = _airQualityData
@@ -43,8 +37,8 @@ class AirQualityViewModel(
                     val response = apiService.currentConditions(request)
                     if (response.isSuccessful) {
                         response.body().also {
-                            it.also { _airQualityData.value =
-                                AirQualityResponse() as AirQualityResponse?
+                            it.also {
+                                (AirQualityResponse() as AirQualityResponse?).also { _airQualityData.value = it }
                             }
                         }
                     } else {
