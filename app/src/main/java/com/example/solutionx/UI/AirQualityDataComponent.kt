@@ -46,7 +46,6 @@ internal fun <T> LiveData<T>.observeAsState(): MutableState<T?> {
 @Composable
 fun AirQualityDataComponentPreview() {
     val viewModel: AirQualityViewModel = viewModel()
-    val hourlyHistoryResponse = listOf<com.example.solutionx.model.HourlyInfo>()
+    listOf<com.example.solutionx.model.HourlyInfo>()
     AirQualityDataComponent(viewModel)
-    HourlyHistoryDataComponent(hourlyHistoryResponse)
 }
