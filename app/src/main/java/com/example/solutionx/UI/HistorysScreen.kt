@@ -30,17 +30,17 @@ fun HistoryScreen(
     val coroutineScope = rememberCoroutineScope()
 
     // Request parameters
-    val request = HistoryLookupRequest(
+    val historyLookupRequest = HistoryLookupRequest(
         pageSize = 10,
         pageToken = "",
         location = LatLng(37.7749, -122.4194)
     )
 
     // Function to fetch historical data
-    fun fetchHistoryData(request: HistoryLookupRequest) {
+    fun fetchHistoryData() {
         coroutineScope.launch {
             try {
-                val response: HistoryResponse = historyViewModel.fetchAirQualityHistory(request)
+                val response: HistoryResponse = historyViewModel.fetchAirQualityHistory()
 
                 historyData.value = response
             } catch (e: Exception) {
@@ -50,7 +50,7 @@ fun HistoryScreen(
     }
 
     // Call fetchHistoryData when the composable is first launched
-    fetchHistoryData(request)
+    fetchHistoryData()
 
     // UI layout to display historical air quality data
     SolutionXTheme {
