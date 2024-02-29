@@ -25,7 +25,7 @@ Model-view-view-Model
 
 
 **Contributions**
-- The project is still under development and only team members for this project are allowed to contribute for now..
+- You're free to experiment and submit pull requests.
 - 
 
 
