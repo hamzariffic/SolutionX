@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.APIService.AirQualityApiService
 import com.example.solutionx.model.MapType
 
@@ -26,4 +27,10 @@ fun HeatmapScreen() {
             HeatmapComponent(type = MapType.US_AQI.toString(), zoom = 2, x = 0, y = 1, AirQualityApiService.create())
         }
     }
+}
+
+@Preview
+@Composable
+fun HeatMapScreen() {
+    HeatmapScreen()
 }
