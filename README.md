@@ -17,12 +17,19 @@ The UI contains mostly buttons which are supposed to lead users to specific dest
 
 
 **Demo**
-
+***Coming soon...***
 
 
 **Architecture**
 Model-view-view-Model
 
+
+
+***Use Case*
+- Research institutions and individuals
+- Students
+- Touring guide
+- Patient recommendations
 
 **Contributions**
 - You're free to experiment and submit pull requests.
