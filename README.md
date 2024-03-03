@@ -1,40 +1,40 @@
 # SolutionX
-SolutionX intends to use Environments API to come up with an app that updates users of their air quality data and offers recommendations on how to prevent severe health risks
 
-The UI contains mostly buttons which are supposed to lead users to specific destinations
+SolutionX is an innovative mobile application designed to empower users by providing real-time air quality data and personalized health recommendations. Leveraging the Environments API from Google Maps, SolutionX covers various environmental factors, including pollen levels, air quality, solar intensity, and more.
 
+## Tech Stacks
 
-**Tech Stacks**
-* User Interface: Jetpack Compose, Material Theme, and Compose Libraries
-* APIs: Environments API in Google Maps - with data for pollen, air quality, solar intensity, and Palm2API
-* Retrofit, GraphQL, and MVVM architecture
-* Firebase
-* Google Cloud Console
-* Gemini API for chat interfaces
+- **User Interface:** Jetpack Compose, Material Theme, and Compose Libraries
+- **APIs:** Environments API in Google Maps (Pollen, Air Quality, Solar Intensity), Palm2API
+- **Architecture:** MVVM (Model-View-ViewModel) with Retrofit and GraphQL
+- **Backend:** Firebase, Google Cloud Console
+- **Chat Interface:** Gemini API
 
-**Wireframes**
+## Wireframes
 
+//To be added....
 
+## Demo
 
-**Demo**
+Check out the demo video on [YouTube](https://www.youtube.com/channel/UC7BshvS8PEE9SpqtOq20Czw).
+
 ***Coming soon...***
 
+## Architecture
 
-**Architecture**
-Model-view-view-Model
+SolutionX follows the MVVM (Model-View-ViewModel) architecture, ensuring a modular and scalable codebase. It employs Retrofit for API interactions and GraphQL for efficient data retrieval.
 
+## Use Case
 
-
-***Use Case*
-- Research institutions and individuals
+**SolutionX caters to a diverse audience, including:**
+- Research Institutions and Individuals
 - Students
-- Touring guide
-- Patient recommendations
+- Tour Guides
+- Patient Health Recommendations
 
-**Contributions**
-- You're free to experiment and submit pull requests.
-- 
+## Contributions
 
+Feel free to experiment and contribute by submitting pull requests. Your input is highly valued!
 
-
-
+## Code Quality Insights
+[![CodeFactor](https://www.codefactor.io/repository/github/hamzariffic/solutionx/badge)](https://www.codefactor.io/repository/github/your_username/solutionx)
