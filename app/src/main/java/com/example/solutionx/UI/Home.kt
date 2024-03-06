@@ -50,7 +50,7 @@ fun Home(navController: NavController) {
 }
 
 
-@Preview()
+@Preview
 @Composable
 fun HomePreview() {
     SolutionXTheme {
