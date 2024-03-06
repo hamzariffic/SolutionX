@@ -48,7 +48,7 @@ data class Location(
 )
 
 data class AirQualityRequest(
-    val location: LatLng,
+    val location: Unit,
     val extraComputations: List<ExtraComputation>,
     val customLocalAqis: List<CustomLocalAqi>,
     val universalAqi: Boolean,
