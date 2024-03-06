@@ -1,6 +1,5 @@
 package com.example.solutionx.APIService
 
-import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
 import com.example.solutionx.model.HistoryResponse
@@ -15,7 +14,7 @@ import retrofit2.http.Path
 interface AirQualityApiService {
     @POST("currentConditions?:lookup=API_KEY")
     suspend fun currentConditions(
-        @Body airQualityRequest: AirQualityRequest
+        @Body airQualityRequest: com.example.solutionx.APIService.AirQualityRequest
     ): AirQualityResponse
 
     fun Any?.getAirQualityHistory(
