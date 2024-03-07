@@ -14,14 +14,14 @@ import retrofit2.http.Path
 interface AirQualityApiService {
     @POST("currentConditions?:lookup=API_KEY")
     suspend fun currentConditions(
-        @Body airQualityRequest: com.example.solutionx.APIService.AirQualityRequest
+        @Body airQualityRequest: AirQualityRequest
     ): AirQualityResponse
 
     fun Any?.getAirQualityHistory(
-        historyRequest: com.example.solutionx.model.HistoryLookupRequest
+        historyRequest: HistoryLookupRequest
     ): HistoryResponse
     fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
-    fun getAirQualityHistory(historyRequest: com.example.solutionx.model.HistoryLookupRequest) {
+    fun getAirQualityHistory(historyRequest: HistoryLookupRequest) {
         null.getAirQualityHistory(historyRequest)
     }
 
