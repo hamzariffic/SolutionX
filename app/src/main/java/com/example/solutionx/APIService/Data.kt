@@ -4,7 +4,6 @@ import com.example.solutionx.model.CustomLocalAqi
 import com.example.solutionx.model.ExtraComputation
 import com.example.solutionx.model.HealthRecommendations
 import com.example.solutionx.model.Pollutant
-import com.google.type.LatLng
 
 //I'm planning on migrating all data related stuff to this class
 data class HistoryRequest(
@@ -53,7 +52,15 @@ data class AirQualityRequest(
     val customLocalAqis: List<CustomLocalAqi>,
     val universalAqi: Boolean,
     val languageCode: String
-)
+) {
+    constructor(location: Unit) : this(
+        location = location,
+        extraComputations = emptyList(),
+        customLocalAqis = emptyList(),
+        universalAqi = false,
+        languageCode = ""
+    )
+}
 
 data class AirQualityResponse(
     val dateTime: String,
