@@ -26,7 +26,7 @@ interface AirQualityApiService {
     }
 
     companion object {
-        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
+        private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=API_KEY"
 
         fun create(): AirQualityApiService {
             val retrofit = Retrofit.Builder()
