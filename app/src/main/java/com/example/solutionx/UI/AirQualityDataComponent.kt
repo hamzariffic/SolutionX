@@ -1,4 +1,4 @@
-@file:Suppress("KotlinConstantConditions", "UNREACHABLE_CODE")
+@file:Suppress("UNREACHABLE_CODE")
 
 package com.example.solutionx.UI
 
@@ -15,6 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.solutionx.model.AirQualityRequest
 import com.example.solutionx.viewModels.AirQualityViewModel
 
+@Suppress("UNREACHABLE_CODE")
 @Composable
 fun AirQualityDataComponent(viewModel: AirQualityViewModel) {
     val regionCode = null
@@ -27,11 +28,6 @@ fun AirQualityDataComponent(viewModel: AirQualityViewModel) {
     }
     airQualityResponse?.let { response ->
         Text(text = response.toString())
-    }
-    fun <T> LiveData<T>.observeAsState(): MutableState<T?> {
-        val state = mutableStateOf<T?>(null)
-        observeForever { state.value = it }
-        return state
     }
 }
 
