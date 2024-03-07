@@ -22,7 +22,7 @@ class AirQualityRepository(private val apiService: AirQualityApiService) {
     }
 }
 
-sealed class Result<out T> {
+sealed class Result<out T>(val message: String?) {
     data class Success<out T>(val data: T) : Result<T>()
     data class Error(val message: String) : Result<Nothing>()
 }
