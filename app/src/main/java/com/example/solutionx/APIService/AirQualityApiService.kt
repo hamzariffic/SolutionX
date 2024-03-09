@@ -2,7 +2,6 @@ package com.example.solutionx.APIService
 
 import com.example.solutionx.model.AirQualityResponse
 import com.example.solutionx.model.HeatmapTileResponse
-import com.example.solutionx.model.HistoryResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -17,16 +16,21 @@ interface AirQualityApiService {
         @Body airQualityRequest: AirQualityRequest
     ): AirQualityResponse
 
-    fun Any?.getAirQualityHistory(
-        historyRequest: HistoryLookupRequest
-    ): HistoryResponse
-    fun getHeatmapTile(type: String, zoom: Int, x: Int, y: Int): Nothing?
-    fun getAirQualityHistory(historyRequest: HistoryLookupRequest) {
-        null.getAirQualityHistory(historyRequest)
-    }
+    @POST("history?:lookup=API_KEY")
+    suspend fun getAirQualityHistory(
+        @Body historyLookupRequest: HistoryLookupRequest
+    ): List<HistoryLookupRequest>
+
+    @GET("heatmapTiles?/{type}/{zoom}/{x}/{y}")
+    suspend fun getHeatmapTile(
+        @Path("type") type: String,
+        @Path("zoom") zoom: Int,
+        @Path("x") x: Int,
+        @Path("y") y: Int
+    ): HeatmapTileResponse
 
     companion object {
-        private const val BASE_URL = "https://airquality.googleapis.com/v1/currentConditions:lookup?key=API_KEY"
+        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
 
         fun create(): AirQualityApiService {
             val retrofit = Retrofit.Builder()
@@ -35,24 +39,29 @@ interface AirQualityApiService {
                 .build()
             return retrofit.create(AirQualityApiService::class.java)
         }
-    }}
+    }
+}
 
-interface History{
+
+interface History {
     @POST("history?:lookup=API_KEY")
     suspend fun getAirQualityHistory(
         @Body historyLookupRequest: Unit
     ): List<HistoryLookupRequest>
 
     companion object {
-        private const val BASE_URL_History = "https://airquality.googleapis.com/v1/"
-        fun create(): AirQualityApiService {
+        private const val BASE_URL_HISTORY = "https://airquality.googleapis.com/v1/"
+
+        fun create(): History {
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL_History)
+                .baseUrl(BASE_URL_HISTORY)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            return retrofit.create(AirQualityApiService::class.java)
+            return retrofit.create(History::class.java)
         }
-    }}
+    }
+}
+
 
 interface HeatmapTile {
     val data: Any
@@ -65,18 +74,15 @@ interface HeatmapTile {
         @Path("y") y: Int
     ): HeatmapTileResponse
 
-    fun getHeatmapTile() {
-        getHeatmapTile()
-    }
-
     companion object {
-        private const val BASE_URL = "https://airquality.googleapis.com/v1/"
+        private const val BASE_URL_HEATMAP = "https://airquality.googleapis.com/v1/"
 
-        fun create(): AirQualityApiService {
+        fun create(): HeatmapTile {
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL_HEATMAP)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            return retrofit.create(AirQualityApiService::class.java)
+            return retrofit.create(HeatmapTile::class.java)
         }
-    }}
+    }
+}
