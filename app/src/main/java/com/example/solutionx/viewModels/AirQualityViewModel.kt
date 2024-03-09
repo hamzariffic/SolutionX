@@ -37,11 +37,10 @@ class AirQualityViewModel(
                     _errorLiveData.value = result.message
                     _airQualityData.value = null
                 }
-
-                else -> {
-                    _errorLiveData.value = "Unexpected error occurred"
-                    _airQualityData.value = null
-                }
+//                else -> {
+//                    _errorLiveData.value = "Unexpected error occurred"
+//                    _airQualityData.value = null
+//                }
             }
             _loadingState.value = false
         }
