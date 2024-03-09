@@ -68,7 +68,15 @@ data class AirQualityResponse(
     val indexes: List<Index>,
     val pollutants: List<Pollutant<Any?>>,
     val healthRecommendations: HealthRecommendations
-)
+) {
+    constructor() : this(
+        dateTime = "",
+        regionCode = "",
+        indexes = emptyList(),
+        pollutants = emptyList(),
+        healthRecommendations = HealthRecommendations()
+    )
+}
 
 data class HistoryLookupRequest(
     val pageSize: Int = 0,
