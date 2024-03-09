@@ -40,7 +40,7 @@ fun HistoryScreen(
     fun fetchHistoryData() {
         coroutineScope.launch {
             try {
-                val response: HistoryResponse = historyViewModel.fetchAirQualityHistory(pageSize, extraComputations, customLocalAqis, universalAqi)
+                val response: HistoryResponse = historyViewModel.fetchAirQualityHistory(historyLookupRequest)
 
                 historyData.value = response
             } catch (e: Exception) {
