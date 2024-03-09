@@ -27,20 +27,30 @@ class AirQualityViewModel(
         viewModelScope.launch {
             _loadingState.value = true
             val currentLocation = locationViewModel.getCurrentLocation()
-            val request = AirQualityRequest(location = currentLocation)
-            when (val result = airQualityRepository.fetchAirQualityData(request)) {
-                is Result.Success -> {
-                    _airQualityData.value = result.data
+            val airQualityRequest = AirQualityRequest(
+                location = currentLocation,
+                extraComputations = emptyList(),
+                customLocalAqis = emptyList(),
+                universalAqi = false,
+                languageCode = "en"
+            )
+            when (val result = airQualityRepository.fetchAirQualityData(airQualityRequest)) {
+                is AirQualityRepository.Result.Success -> {
+                    result.data.also {
+                        _airQualityData.value = AirQualityResponse()
+                    }
                     _errorLiveData.value = null
                 }
-                is Result.Error -> {
+
+                is AirQualityRepository.Result.Error -> {
                     _errorLiveData.value = result.message
                     _airQualityData.value = null
                 }
-//                else -> {
-//                    _errorLiveData.value = "Unexpected error occurred"
-//                    _airQualityData.value = null
-//                }
+
+                else -> {
+                    _errorLiveData.value = "Unexpected error occurred"
+                    _airQualityData.value = null
+                }
             }
             _loadingState.value = false
         }
