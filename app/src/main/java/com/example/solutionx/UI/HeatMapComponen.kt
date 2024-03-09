@@ -10,7 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.solutionx.APIService.AirQualityApiService
-import com.example.solutionx.APIService.HeatmapTile
+import com.example.solutionx.model.HeatmapTileResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -64,7 +64,7 @@ private suspend fun getHeatmapTileResponse(
     x: Int,
     y: Int,
     airQualityApiService: AirQualityApiService
-): HeatmapTile? {
+): HeatmapTileResponse? {
     return withContext(Dispatchers.IO) {
         try {
             airQualityApiService.getHeatmapTile(type, zoom, x, y)
