@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.solutionx.model.AirQualityRequest
-import com.example.solutionx.viewModels.AirQualityViewModel
+import com.example.solutionx.viewModels.AirQualityViewModel 
 
 @Suppress("UNREACHABLE_CODE")
 @Composable
