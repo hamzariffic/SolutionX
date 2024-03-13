@@ -1,85 +1,114 @@
+@file:Suppress("UNREACHABLE_CODE")
+
 package com.example.solutionx.UI
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.model.HistoryLookupRequest
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
 import com.example.solutionx.viewModels.HistoryViewModel
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+
 
 @Composable
 fun HistoryScreen(
     navController: NavController,
-    historyViewModel: HistoryViewModel = viewModel()) {
-    // Define state for history data and error
+    historyViewModel: HistoryViewModel = viewModel()
+) {
     val historyData = remember { mutableStateOf<HistoryResponse?>(null) }
     val error = remember { mutableStateOf<String?>(null) }
+    val isLoading = remember { mutableStateOf(false) }
 
-    // Coroutine scope for handling async operations
-    val coroutineScope = rememberCoroutineScope()
-
-    // Request parameters
     val historyLookupRequest = HistoryLookupRequest(
         pageSize = 10,
         pageToken = "",
         location = LatLng(37.7749, -122.4194)
     )
 
-    // Function to fetch historical data
     fun fetchHistoryData() {
-        coroutineScope.launch {
+        isLoading.value = true
+        val coroutineScope = null
+        coroutineScope?.launch {
             try {
-                val response: HistoryResponse = historyViewModel.fetchAirQualityHistory(historyLookupRequest)
-
+                val response: LiveData<HistoryResponse> =
+                    historyViewModel.fetchAirQualityHistory(historyLookupRequest)
                 historyData.value = response
             } catch (e: Exception) {
-                error.value = "Error fetching historical data: ${e.message}"
+                when (e) {
+                    is HttpException -> error.value = "Network error: ${e.message}"
+                    else -> error.value = "Error fetching historical data: ${e.message}"
+                }
+            } finally {
+                isLoading.value = false
             }
         }
     }
 
-    // Call fetchHistoryData when the composable is first launched
-    fetchHistoryData()
+    LaunchedEffect(Unit) {
+        fetchHistoryData()
+    }
 
-    // UI layout to display historical air quality data
     SolutionXTheme {
         Column {
-            Text("Historical Air Quality Data")
+            // Search bar placeholder (implementation needed)
+            // ...
+            // Circular progress indicator for loading animation
+            if (isLoading.value) CircularProgressIndicator() else Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            )
+            // Card for displaying historical air quality data
+      {
+          Card(modifier = Modifier
+                  .fillMaxWidth()
+                  .padding(16.dp), elevation = 4.dp) {
+              Column(contentPadding = Modifier.padding(16.dp)) {
+                  Text("Historical Air Quality Data")
 
-            // Display any error
-            error.value?.let { errorMessage ->
-                Text(errorMessage)
-            }
+                  error.value?.let { errorMessage ->
+                      Text(errorMessage, color = MaterialTheme.colorScheme.error)
+                  }
 
-            // Display historical air quality data
-            historyData.value?.let { historyResponse ->
-                // Display data  using Text & other composable functions
-                Text("Data: $historyResponse")
-            }
-            OutlinedButton(
-                onClick = { navController.navigate("extraComputations") }
-            ) {
-                Text("View Extra Computations")
+                  historyData.value?.let { historyResponse ->
+                      val data = historyResponse
+                      for (item in data) Row {
+                          Text(item.timestamp.toString())
+                          Spacer(modifier = Modifier.width(8.dp))
+                          OutlinedButton(
+                              onClick = { /* handle AQI button click */ },
+                              modifier = Modifier.weight(1f)
+                          ) {
+                              Text(item.aqi.toString())
+
+                          }
+                      }
+                  }
+              }
+          }
             }
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun HistoryScreenPreview() {
-    val navController = rememberNavController()
-    HistoryScreen(navController)
 }
