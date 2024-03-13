@@ -4,6 +4,7 @@ import com.example.solutionx.model.CustomLocalAqi
 import com.example.solutionx.model.ExtraComputation
 import com.example.solutionx.model.HealthRecommendations
 import com.example.solutionx.model.Pollutant
+import com.google.android.gms.maps.model.LatLng
 
 //I'm planning on migrating all data related stuff to this class
 data class HistoryRequest(
@@ -81,12 +82,13 @@ data class AirQualityResponse(
 data class HistoryLookupRequest(
     val pageSize: Int = 0,
     val pageToken: String = "",
-    val location: com.google.android.gms.maps.model.LatLng = com.google.android.gms.maps.model.LatLng(0.0, 0.0),
+    val location: LatLng = LatLng(0.0, 0.0),
     val extraComputations: List<ExtraComputation> = emptyList(),
     val customLocalAqis: List<CustomLocalAqi> = emptyList(),
     val timeRange: TimeRange = TimeRange("", 0, Interval("", "")),
     val universalAqi: Boolean = false,
-    val languageCode: String = ""
+    val languageCode: String = "",
+    val key: String
 )
 
 data class HistoryLookupResponse(
