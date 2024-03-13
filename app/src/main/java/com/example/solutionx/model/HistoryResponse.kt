@@ -17,3 +17,7 @@ data class HistoryResponse(
     val dominantPollutant: String?
 )
 
+{
+    val data: Any
+        get() = hoursInfo}
+
