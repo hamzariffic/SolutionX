@@ -4,6 +4,7 @@ package com.example.solutionx.UI
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -79,6 +81,7 @@ fun HistoryScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
+
             )
             // Card for displaying historical air quality data
       {
@@ -89,8 +92,8 @@ fun HistoryScreen(
                   Text("Historical Air Quality Data")
 
                   error.value?.let { errorMessage ->
-                      Text(errorMessage, color = MaterialTheme.colorScheme.error)
-                  }
+                          Text(errorMessage, color = MaterialTheme.colorScheme.error)
+                      }
 
                   historyData.value?.let { historyResponse ->
                       val data = historyResponse
@@ -111,4 +114,9 @@ fun HistoryScreen(
             }
         }
     }
+}
+
+private fun ColumnScope.Card(modifier: Modifier, elevation: Dp, content: @Composable() (ColumnScope.() -> Unit)) {
+
+
 }
