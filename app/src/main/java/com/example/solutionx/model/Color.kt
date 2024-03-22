@@ -3,16 +3,12 @@ package com.example.solutionx.model
 import android.os.Parcel
 import android.os.Parcelable
 
-//I'm currently not using this file since there are some bugs to deal with and I'm yet to master that from the documentation for the same
-//Will update the codebase with time
-
 data class Color(
     val red: Int,
     val green: Int,
     val blue: Int,
     val alpha: Int?,
 
-//    val colorList: List<String> = listOf("#000000", "#009966", "#ffcc00", "#ff9900", "#cc0000", "#660066", "#9933cc")
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -53,12 +49,5 @@ data class Color(
 }
 
 private fun Parcel.writeStringList() {
-    TODO("Not yet implemented")
+    return writeStringList(emptyList())
 }
-
-//data class Color(
-//    val red: Int,
-//    val green: Int,
-//    val blue: Int,
-//    val alpha: Int
-//) {}
