@@ -1,7 +1,8 @@
 package com.example.solutionx.model
 
+//heatmap tile request logic
 data class HeatmapTileRequest(
-    val mapType: MapType,
+    val mapType: String,
     val zoom: Int,
     val x: Int,
     val y: Int
@@ -17,13 +18,23 @@ enum class MapType {
     US_AQI
 }
 
+
+//Heatmap tile response
 data class HeatmapTileResponse(
     val contentType: String,
     val data: ByteArray,
-    val extensions: List<Any>
+    val extensions: List<Any>,
+    val errorMessage: String? = null //only used in case of error
 ) {
+//    Error handling
     val isSuccessful: Boolean
-        get() = contentType == "image/png"
+        get() = contentType == "image/png" && data.isNotEmpty()
+    val isError: Boolean
+        get() = !isSuccessful
+
+    fun hasError(): Boolean {
+        return isError || errorMessage != null
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
