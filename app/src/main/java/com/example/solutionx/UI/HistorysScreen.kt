@@ -1,5 +1,3 @@
-@file:Suppress("UNREACHABLE_CODE")
-
 package com.example.solutionx.UI
 
 import androidx.compose.foundation.layout.Column
@@ -24,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.model.HistoryLookupRequest
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
@@ -85,8 +84,8 @@ fun HistoryScreen(
             // Card for displaying historical air quality data
       {
           Card(modifier = Modifier
-                  .fillMaxWidth()
-                  .padding(16.dp), elevation = 4.dp) {
+              .fillMaxWidth()
+              .padding(16.dp), elevation = 4.dp) {
               Column(contentPadding = Modifier.padding(16.dp)) {
                   Text("Historical Air Quality Data")
 
@@ -118,4 +117,9 @@ fun HistoryScreen(
 private fun ColumnScope.Card(modifier: Modifier, elevation: Dp, content: @Composable() (ColumnScope.() -> Unit)) {
 
 
+}
+
+@Composable
+fun HistoryScreenPre() {
+    HistoryScreen(navController = rememberNavController())
 }
