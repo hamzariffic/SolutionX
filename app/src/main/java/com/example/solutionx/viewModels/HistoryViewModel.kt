@@ -13,6 +13,15 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+private val Unit.endTime: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+private val Unit.startTime: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+
 class HistoryViewModel : ViewModel() {
 
     private val airQualityService: AirQualityApiService by lazy {
@@ -30,7 +39,9 @@ class HistoryViewModel : ViewModel() {
                 val response = airQualityService.getHistory(
                     key = API_KEY,
                     location = historyRequest.location.latitude.toString() + "," + historyRequest.location.longitude.toString(),
-                    // Add other request parameters as needed (pageSize, timeRange, etc.)
+                    pageSize = historyRequest.pageSize,
+                    pageToken = historyRequest.pageToken,
+                    timeRange = historyRequest.timeRange.startTime.toString() + "/" + historyRequest.timeRange.endTime.toString(),
                 )
                 liveData.postValue(response)
             } catch (e: Exception) {
@@ -41,3 +52,5 @@ class HistoryViewModel : ViewModel() {
         return liveData
     }
 }
+
+private fun <T> MutableLiveData<T>.postValue(response: Unit) = Unit
