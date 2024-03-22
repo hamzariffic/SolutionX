@@ -12,17 +12,17 @@ import retrofit2.http.Path
 
 
 interface AirQualityApiService {
-    @POST("currentConditions?:lookup=API_KEY")
+    @POST("currentConditions:lookup?key=$API_KEY")
     suspend fun currentConditions(
         @Body airQualityRequest: AirQualityRequest
     ): AirQualityResponse
 
-    @POST("history?:lookup=API_KEY")
+    @POST("history:lookup?key=$API_KEY")
     suspend fun getAirQualityHistory(
         @Body historyLookupRequest: HistoryLookupRequest
     ): List<HistoryLookupRequest>
 
-    @GET("heatmapTiles?/{type}/{zoom}/{x}/{y}")
+    @GET("mapTypes/{type}/heatmapTiles/{zoom}/{x}/{y}?key=$API_KEY")
     suspend fun getHeatmapTile(
         @Path("type") type: String,
         @Path("zoom") zoom: Int,
