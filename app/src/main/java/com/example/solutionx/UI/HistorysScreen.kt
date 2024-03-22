@@ -1,5 +1,6 @@
 package com.example.solutionx.UI
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -16,13 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.solutionx.model.HistoryLookupRequest
 import com.example.solutionx.model.HistoryResponse
 import com.example.solutionx.ui.theme.SolutionXTheme
@@ -34,7 +35,7 @@ import retrofit2.HttpException
 
 @Composable
 fun HistoryScreen(
-    navController: NavController,
+    navController: NavController
     historyViewModel: HistoryViewModel = viewModel()
 ) {
     val historyData = remember { mutableStateOf<HistoryResponse?>(null) }
@@ -47,9 +48,11 @@ fun HistoryScreen(
         location = LatLng(37.7749, -122.4194)
     )
 
+    @SuppressLint("CoroutineCreationDuringComposition")
+    @Composable
     fun fetchHistoryData() {
         isLoading.value = true
-        val coroutineScope = null
+        val coroutineScope = rememberCoroutineScope()
         coroutineScope?.launch {
             try {
                 val response: LiveData<HistoryResponse> =
@@ -121,5 +124,5 @@ private fun ColumnScope.Card(modifier: Modifier, elevation: Dp, content: @Compos
 
 @Composable
 fun HistoryScreenPre() {
-    HistoryScreen(navController = rememberNavController())
+    HistoryScreen()
 }
