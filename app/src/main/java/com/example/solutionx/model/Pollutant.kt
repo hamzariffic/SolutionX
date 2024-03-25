@@ -3,21 +3,6 @@ package com.example.solutionx.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class HistoryResponse(
-    val hoursInfo: List<HourInfo>,
-    val regionCode: String,
-    val nextPageToken: String?,
-    val s: String,
-    val nothing: Nothing?,
-    val nothing1: Nothing?,
-    val s1: String,
-    val i: Int,
-    val nothing2: Nothing?,
-    val nothing3: Nothing?,
-    val nothing4: Nothing?,
-    val nothing5: Nothing?
-)
-
 data class HourInfo(
     val dateTime: String,
     val indexes: List<AirQualityIndex>,
@@ -96,9 +81,7 @@ data class HealthRecommendations(
         parcel.readString().toString(),
         parcel.readString(),
         parcel.readString().toString()
-    ) {
-    }
-
+    )
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(generalPopulation)
         parcel.writeString(elderly)
