@@ -91,7 +91,7 @@ data class HistoryLookupRequest(
     val key: String
 )
 
-data class HistoryLookupResponse(
+data class HistoryResponse(
     val hoursInfo: List<HourlyInfo>,
     val regionCode: String,
     val nextPageToken: String
