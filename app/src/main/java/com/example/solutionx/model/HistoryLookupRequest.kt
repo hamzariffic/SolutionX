@@ -25,6 +25,10 @@ data class HistoryLookupRequest(
         timeRange = Unit,
         universalAqi = false,
         languageCode = "en",
-        uaqiColor = Color(0xFF00FF00)
+        uaqiColor = Color.White
     )
 }
+data class Period(
+    val startTime: String,
+    val endTime: String
+)
