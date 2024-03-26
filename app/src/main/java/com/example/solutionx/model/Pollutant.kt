@@ -3,10 +3,10 @@ package com.example.solutionx.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class HourInfo(
+data class hourlyInfo(
     val dateTime: String,
     val indexes: List<AirQualityIndex>,
-    val pollutants: List<Pollutant>,
+    val pollutants: List<Pollutant<Any?>>,
     val healthRecommendations: HealthRecommendations
 )
 
@@ -22,7 +22,7 @@ data class AirQualityIndex(
     val categoryNumber: Int
 )
 
-data class Pollutant(
+data class Pollutant<T>(
     val name: String?,
     val conc: Double,
     val concUnit: String?,
@@ -53,12 +53,12 @@ data class Pollutant(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Pollutant> {
-        override fun createFromParcel(parcel: Parcel): Pollutant {
+    companion object CREATOR : Parcelable.Creator<Pollutant<Any?>> {
+        override fun createFromParcel(parcel: Parcel): Pollutant<Any?> {
             return Pollutant(parcel)
         }
 
-        override fun newArray(size: Int): Array<Pollutant?> {
+        override fun newArray(size: Int): Array<Pollutant<Any?>?> {
             return arrayOfNulls(size)
         }
     }
@@ -82,6 +82,11 @@ data class HealthRecommendations(
         parcel.readString(),
         parcel.readString().toString()
     )
+
+    constructor() : this(
+
+    )
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(generalPopulation)
         parcel.writeString(elderly)
