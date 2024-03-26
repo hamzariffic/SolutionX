@@ -22,13 +22,14 @@ enum class MapType {
 //Heatmap tile response
 data class HeatmapTileResponse(
     val contentType: String,
-    val data: ByteArray,
+    val data: Int,
     val extensions: List<Any>,
-    val errorMessage: String? = null //only used in case of error
+    val errorMessage: String? = null, //only used in case of error
+    val nothing: Nothing
 ) {
 //    Error handling
     val isSuccessful: Boolean
-        get() = contentType == "image/png" && data.isNotEmpty()
+        get() = (contentType == "image/png") && data.isNotEmpty()
     val isError: Boolean
         get() = !isSuccessful
 
@@ -49,7 +50,7 @@ data class HeatmapTileResponse(
 
     override fun hashCode(): Int {
         var result = contentType.hashCode()
-        result = 31 * result + data.contentHashCode()
+        result = (31 * result) + data.contentHashCode()
         result = 31 * result + extensions.hashCode()
         return result
     }
