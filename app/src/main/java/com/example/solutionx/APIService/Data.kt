@@ -1,5 +1,7 @@
 package com.example.solutionx.APIService
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.example.solutionx.model.CustomLocalAqi
 import com.example.solutionx.model.ExtraComputation
 import com.example.solutionx.model.HealthRecommendations
@@ -64,19 +66,41 @@ data class AirQualityRequest(
 }
 
 data class AirQualityResponse(
-    val dateTime: String,
-    val regionCode: String,
+    val dateTime: String?,
+    val regionCode: String?,
     val indexes: List<Index>,
-    val pollutants: List<Pollutant<Any?>>,
+    val pollutants: List<Pollutant<Unit>>,
     val healthRecommendations: HealthRecommendations
-) {
-    constructor() : this(
-        dateTime = "",
-        regionCode = "",
-        indexes = emptyList(),
-        pollutants = emptyList(),
-        healthRecommendations = HealthRecommendations()
-    )
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        TODO("indexes"),
+        TODO("pollutants"),
+        parcel.readParcelable(HealthRecommendations::class.java.classLoader)!!
+    )   {
+    }
+    constructor() : this(dateTime = "", regionCode = "", indexes = emptyList(), pollutants = emptyList(), healthRecommendations = HealthRecommendations())
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(dateTime)
+        parcel.writeString(regionCode)
+        parcel.writeParcelable(healthRecommendations, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<AirQualityResponse> {
+        override fun createFromParcel(parcel: Parcel): AirQualityResponse {
+            return AirQualityResponse(parcel)
+        }
+
+        override fun newArray(size: Int): Array<AirQualityResponse?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
 
 data class HistoryLookupRequest(
