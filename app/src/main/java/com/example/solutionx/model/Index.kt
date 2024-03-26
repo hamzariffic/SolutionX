@@ -1,6 +1,7 @@
 package com.example.solutionx.model
 
 import android.os.Parcel
+import android.os.Parcelable
 
 data class HistoryResponse(
     val hoursInfo: List<HourInfo>,
@@ -20,7 +21,14 @@ data class Index(
     val color: Color,
     val category: String,
     val dominantPollutant: String
-) {
+) : Parcelable {
+    override fun describeContents(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        TODO("Not yet implemented")
+    }
 }
 
 data class Color(
