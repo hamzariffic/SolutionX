@@ -21,6 +21,10 @@ class HeatmapViewModel(private val airQualityApiService: AirQualityApiService) :
         x: Int,
         y: Int
     ): HeatmapTileResponse? {
-        // Implementation similar to the getHeatmapTileResponse function in HeatmapComponent
+            return try {
+                airQualityApiService.getHeatmapTile(type.name, zoom, x, y)
+            } catch (e: Exception) {
+                null
+            }
     }
 }
